@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#f7a8c4">
+    <title data-i18n="bilanPageTitle">Bilan Santé — Grossesse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+/* ============================================================
+   BILAN — GLOBAL
+   ============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+:root {
+    --pk: #ff8fb1; --pk2: #f06292; --cr: #b0005c; --pur: #c084fc;
+    --bg1: #ffd6e7; --bg2: #f9b8d3; --bg3: #eea0c5;
+    --glass: rgba(255,255,255,0.65); --glass-b: rgba(255,255,255,0.7);
+    --shadow: 0 20px 50px rgba(176,0,92,0.12);
+    --r: 20px; --r-sm: 12px;
+    --hh: 68px;
+}
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+    min-height:100vh; min-height:100dvh;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg,#ffd6e7 0%,#f9b8d3 40%,#eea0c5 100%);
+    color:#3a003a;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+    height:var(--hh); display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.35); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,0.5); position:sticky; top:0; z-index:200; padding:0 70px;
+}
+.back-btn {
+    position:absolute; left:16px; font-size:clamp(12px,2.5vw,14px);
+    background:linear-gradient(135deg,var(--pk),var(--pk2)); color:white; border:none; cursor:pointer;
+    padding:8px 16px; border-radius:30px; font-family:'Poppins',sans-serif; font-weight:600;
+    transition:transform .2s,box-shadow .2s; box-shadow:0 3px 10px rgba(240,98,146,.35);
+    white-space:nowrap;
+}
+.back-btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(240,98,146,.5); }
+header h1 { font-family:'Playfair Display',serif; font-size:clamp(13px,2.5vw,22px); color:var(--cr); text-align:center; line-height:1.3; }
+
+/* LANG TOGGLE */
+.header-lang {
+    position:absolute; right:16px;
+    display:flex; gap:6px; align-items:center;
+}
+.header-lang button {
+    border:none; background:rgba(255,255,255,0.5); cursor:pointer;
+    border-radius:8px; padding:4px 8px; font-size:12px; font-family:'Poppins',sans-serif;
+    font-weight:600; color:var(--cr); transition:.2s;
+}
+.header-lang button.active, .header-lang button:hover {
+    background:linear-gradient(135deg,var(--pk),var(--pk2)); color:white;
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+.page { max-width:900px; margin:0 auto; padding:clamp(16px,3vw,32px); }
+
+/* ============================================================
+   INTRO BANNER
+   ============================================================ */
+.intro-banner {
+    background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-b); border-radius:var(--r);
+    padding:clamp(20px,3vw,32px); margin-bottom:clamp(16px,2.5vw,28px);
+    box-shadow:var(--shadow); text-align:center;
+}
+.intro-banner .badge {
+    display:inline-block; background:linear-gradient(135deg,var(--pk),var(--cr));
+    color:white; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+    padding:5px 18px; border-radius:30px; margin-bottom:14px;
+}
+.intro-banner h2 { font-family:'Playfair Display',serif; font-size:clamp(18px,3.5vw,28px); color:var(--cr); margin-bottom:10px; }
+.intro-banner p { font-size:clamp(12px,1.8vw,14.5px); color:#5a205a; line-height:1.7; max-width:680px; margin:0 auto; }
+
+/* ============================================================
+   FORM CARD
+   ============================================================ */
+.form-card {
+    background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-b); border-radius:var(--r); box-shadow:var(--shadow);
+    padding:clamp(20px,3vw,36px); margin-bottom:clamp(16px,2.5vw,28px);
+}
+
+.form-section-title {
+    font-family:'Playfair Display',serif; font-size:clamp(15px,2.2vw,19px);
+    color:var(--cr); margin-bottom:clamp(14px,2vw,20px);
+    padding-bottom:10px; border-bottom:2px solid rgba(176,0,92,0.15);
+    display:flex; align-items:center; gap:8px;
+}
+
+/* GRID */
+.form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:clamp(12px,2vw,20px); }
+.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-group.full { grid-column:1/-1; }
+
+label {
+    font-size:clamp(11.5px,1.6vw,13px); font-weight:600; color:var(--cr);
+    display:flex; align-items:center; gap:5px;
+}
+
+input[type="number"], input[type="text"], input[type="date"],
+select, textarea {
+    padding:clamp(9px,1.5vw,12px) clamp(12px,2vw,16px);
+    border:2px solid rgba(176,0,92,0.18); border-radius:var(--r-sm);
+    background:rgba(255,255,255,0.8); color:#3a003a;
+    font-family:'Poppins',sans-serif; font-size:clamp(12px,1.7vw,14px);
+    transition:border-color .25s,box-shadow .25s; outline:none; width:100%;
+}
+input:focus, select:focus, textarea:focus {
+    border-color:var(--pk2); box-shadow:0 0 0 3px rgba(240,98,146,.18);
+}
+input::placeholder, textarea::placeholder { color:#b06080; opacity:.7; }
+textarea { resize:vertical; min-height:80px; }
+select { cursor:pointer; appearance:none; -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23b0005c'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;
+}
+
+/* RADIO / CHECKBOX groups */
+.radio-group, .check-group { display:flex; flex-wrap:wrap; gap:8px; }
+.radio-group label, .check-group label {
+    display:flex; align-items:center; gap:6px; cursor:pointer;
+    padding:7px 14px; border-radius:30px; border:2px solid rgba(176,0,92,.18);
+    background:rgba(255,255,255,.7); font-weight:500; font-size:clamp(11px,1.6vw,13px);
+    transition:background .2s,border-color .2s,color .2s; color:#3a003a;
+}
+.radio-group input[type="radio"], .check-group input[type="checkbox"] {
+    display:none; width:auto; padding:0; border:none; background:none;
+}
+.radio-group label:has(input:checked),
+.check-group label:has(input:checked) {
+    background:linear-gradient(135deg,var(--pk),var(--pk2));
+    color:white; border-color:transparent;
+}
+
+/* RANGE */
+.range-wrap { display:flex; flex-direction:column; gap:4px; }
+input[type="range"] {
+    width:100%; padding:0; border:none; background:none;
+    accent-color:var(--pk2); cursor:pointer; height:6px;
+    border-radius:3px;
+}
+.range-val { font-size:13px; font-weight:700; color:var(--cr); text-align:right; }
+
+/* SECTION DIVIDER */
+.section-sep { grid-column:1/-1; border:none; border-top:1px solid rgba(176,0,92,.12); margin:6px 0; }
+
+/* SUBMIT BUTTON */
+.submit-btn {
+    width:100%; padding:clamp(13px,2.5vw,18px);
+    border:none; border-radius:50px; cursor:pointer;
+    background:linear-gradient(135deg,#ee0979,#ff6b6b);
+    color:white; font-family:'Poppins',sans-serif;
+    font-size:clamp(14px,2.2vw,17px); font-weight:700;
+    box-shadow:0 5px 20px rgba(238,9,121,.4);
+    transition:transform .25s,box-shadow .25s;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin-top:8px;
+}
+.submit-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(238,9,121,.55); }
+.submit-btn:active { transform:translateY(0); }
+.submit-btn:disabled { opacity:.65; cursor:not-allowed; transform:none; }
+
+/* SPINNER */
+.spinner { width:20px; height:20px; border:3px solid rgba(255,255,255,.4); border-top-color:white; border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ============================================================
+   RESULTS SECTION
+   ============================================================ */
+#resultsSection { display:none; margin-bottom:32px; }
+
+.results-header {
+    background:linear-gradient(135deg,var(--cr),#e0006a);
+    color:white; border-radius:var(--r) var(--r) 0 0;
+    padding:clamp(18px,3vw,28px); text-align:center;
+}
+.results-header h2 { font-family:'Playfair Display',serif; font-size:clamp(18px,3vw,26px); margin-bottom:6px; }
+.results-header p { font-size:clamp(11.5px,1.7vw,14px); opacity:.9; }
+
+.results-body {
+    background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-b); border-radius:0 0 var(--r) var(--r);
+    box-shadow:var(--shadow);
+}
+
+/* STAT CARDS */
+.stats-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));
+    gap:clamp(10px,2vw,16px); padding:clamp(16px,2.5vw,28px);
+    border-bottom:1px solid rgba(176,0,92,.1);
+}
+.stat-card {
+    background:rgba(255,255,255,.75); border-radius:var(--r-sm);
+    padding:clamp(12px,2vw,18px); text-align:center;
+    border:1px solid rgba(176,0,92,.1); box-shadow:0 4px 14px rgba(176,0,92,.07);
+    transition:transform .2s;
+}
+.stat-card:hover { transform:translateY(-3px); }
+.stat-icon { font-size:clamp(24px,4vw,32px); margin-bottom:6px; display:block; }
+.stat-value { font-size:clamp(18px,3vw,26px); font-weight:700; color:var(--cr); display:block; margin-bottom:4px; }
+.stat-label { font-size:clamp(10px,1.5vw,12px); color:#7a205a; font-weight:500; }
+.stat-badge {
+    display:inline-block; margin-top:6px; font-size:10px; font-weight:700; padding:3px 10px;
+    border-radius:20px; text-transform:uppercase; letter-spacing:.8px;
+}
+.badge-ok { background:#d4f5d4; color:#0a6b0a; }
+.badge-warn { background:#fff3cd; color:#856404; }
+.badge-alert { background:#fde8e8; color:#911; }
+
+/* AI ANALYSIS */
+.analysis-section { padding:clamp(16px,2.5vw,28px); }
+.analysis-block {
+    background:rgba(255,255,255,.7); border-radius:var(--r-sm);
+    padding:clamp(14px,2vw,22px); margin-bottom:clamp(12px,1.8vw,18px);
+    border-left:4px solid var(--pk2);
+}
+.analysis-block h3 { font-family:'Playfair Display',serif; font-size:clamp(14px,2vw,17px); color:var(--cr); margin-bottom:10px; }
+.analysis-block p, .analysis-block li { font-size:clamp(12px,1.7vw,14px); line-height:1.8; color:#3a003a; }
+.analysis-block ul { padding-left:18px; display:flex; flex-direction:column; gap:6px; }
+.analysis-block.priority { border-left-color:#ee0979; background:rgba(255,230,240,.6); }
+.analysis-block.good { border-left-color:#4CAF50; background:rgba(212,245,212,.4); }
+.analysis-block.warning { border-left-color:#ff9800; background:rgba(255,243,205,.4); }
+
+/* PROGRESS BAR */
+.prog-wrap { margin:6px 0; }
+.prog-label { display:flex; justify-content:space-between; font-size:12px; font-weight:600; color:var(--cr); margin-bottom:4px; }
+.prog-bar { height:10px; border-radius:5px; background:rgba(176,0,92,.12); overflow:hidden; }
+.prog-fill { height:100%; border-radius:5px; background:linear-gradient(90deg,var(--pk),var(--pk2)); transition:width 1s ease; }
+.prog-fill.warn { background:linear-gradient(90deg,#ff9800,#ff5722); }
+.prog-fill.alert { background:linear-gradient(90deg,#f44336,#c62828); }
+
+/* ADVICE LIST */
+.advice-list { display:flex; flex-direction:column; gap:10px; }
+.advice-item {
+    background:rgba(255,255,255,.75); border-radius:var(--r-sm);
+    padding:clamp(10px,1.8vw,16px) clamp(12px,2vw,18px);
+    border-left:3px solid var(--pk);
+    font-size:clamp(12px,1.6vw,13.5px); line-height:1.7; color:#3a003a;
+}
+.advice-item strong { color:var(--cr); display:block; margin-bottom:3px; font-size:clamp(12px,1.6vw,14px); }
+
+/* LOADING OVERLAY */
+.loading-overlay {
+    display:none; position:fixed; inset:0; background:rgba(255,220,235,.85);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    z-index:9999; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+}
+.loading-overlay.show { display:flex; }
+.loading-spinner { width:60px; height:60px; border:5px solid rgba(176,0,92,.2); border-top-color:var(--cr); border-radius:50%; animation:spin .8s linear infinite; }
+.loading-text { font-family:'Playfair Display',serif; font-size:clamp(16px,2.5vw,20px); color:var(--cr); text-align:center; }
+.loading-sub { font-size:13px; color:#7a205a; }
+
+/* ERROR MESSAGE */
+.error-msg {
+    background:#fde8e8; border:1px solid #f5c2c7; border-radius:var(--r-sm);
+    padding:16px 20px; color:#911; font-size:13px; margin-top:12px; display:none;
+}
+
+/* FOOTER */
+footer {
+    text-align:center; padding:20px; font-size:12px; color:var(--cr);
+    background:rgba(255,255,255,.3); border-top:1px solid rgba(255,255,255,.5);
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+body.dark {
+    background:linear-gradient(135deg,#1a0a20 0%,#1f0d2e 50%,#150822 100%);
+    color:#f0e0f0;
+}
+body.dark header { background:rgba(0,0,0,.55); border-color:rgba(255,255,255,.08); }
+body.dark header h1 { color:#ffb3d9; }
+body.dark .back-btn { background:linear-gradient(135deg,#6a11cb,#2575fc); }
+body.dark .header-lang button { background:rgba(255,255,255,.1); color:#ffb3d9; }
+body.dark .header-lang button.active { background:linear-gradient(135deg,var(--pk),var(--pk2)); color:white; }
+
+body.dark .intro-banner,
+body.dark .form-card,
+body.dark .results-body { background:rgba(20,5,30,.75); border-color:rgba(255,255,255,.08); }
+body.dark .intro-banner h2 { color:#ffb3d9; }
+body.dark .intro-banner p { color:#e0c0e0; }
+body.dark .form-section-title { color:#ffb3d9; border-bottom-color:rgba(255,100,200,.15); }
+body.dark label { color:#ffb3d9; }
+body.dark input, body.dark select, body.dark textarea {
+    background:rgba(40,10,50,.8); border-color:rgba(255,100,200,.25);
+    color:#f0e0f0;
+}
+body.dark input::placeholder, body.dark textarea::placeholder { color:#c09ab0; }
+body.dark .radio-group label, body.dark .check-group label {
+    background:rgba(255,255,255,.07); border-color:rgba(255,100,200,.25); color:#e0d0e0;
+}
+body.dark .stat-card { background:rgba(40,10,50,.7); border-color:rgba(255,100,200,.15); }
+body.dark .stat-label { color:#c090c0; }
+body.dark .analysis-block { background:rgba(40,10,50,.6); }
+body.dark .analysis-block p, body.dark .analysis-block li { color:#e0d0e0; }
+body.dark .advice-item { background:rgba(40,10,50,.6); color:#e0d0e0; }
+body.dark .prog-bar { background:rgba(255,100,200,.12); }
+body.dark footer { color:#ffb3d9; background:rgba(0,0,0,.4); }
+body.dark .error-msg { background:#2a0a1a; border-color:#6a0030; color:#ff9ab0; }
+body.dark .results-header { background:linear-gradient(135deg,#7a0040,#b00060); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:600px) {
+    header { padding:0 8px 0 8px; }
+    .back-btn { font-size:11px; padding:6px 10px; left:8px; }
+    header h1 { font-size:11.5px; margin:0 70px; }
+    .header-lang { right:8px; }
+    .header-lang button { font-size:10px; padding:3px 6px; }
+    .form-grid { grid-template-columns:1fr; }
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:380px) {
+    .stats-grid { grid-template-columns:1fr 1fr; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" data-i18n="loadingTitle">Analyse en cours…</div>
+    <div class="loading-sub" data-i18n="loadingSub">Notre IA analyse votre bilan de santé</div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <button class="back-btn" onclick="window.location.href='main.html'">
+        ← <span data-i18n="backBtn">Retour au guide</span>
+    </button>
+    <h1 data-i18n="bilanHeader">📋 Bilan Santé Grossesse</h1>
+    <div class="header-lang">
+        <button onclick="changeLang('fr')" id="btn-fr" class="active">FR</button>
+        <button onclick="changeLang('en')" id="btn-en">EN</button>
+        <button onclick="changeLang('ar')" id="btn-ar">ع</button>
+    </div>
+</header>
+
+<div class="page">
+
+    <!-- INTRO -->
+    <div class="intro-banner">
+        <div class="badge" data-i18n="bilanBadge">Évaluation Médicale Personnalisée</div>
+        <h2 data-i18n="bilanIntroTitle">Votre bilan de santé prénatal</h2>
+        <p data-i18n="bilanIntroText">Remplissez ce formulaire complet pour recevoir une analyse personnalisée de votre état de santé pendant la grossesse, avec des statistiques, des indicateurs clés et des conseils médicaux adaptés à votre situation.</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card" id="formCard">
+
+        <!-- Section 1: General Info -->
+        <div class="form-section-title">👤 <span data-i18n="sec1">Informations générales</span></div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>🎂 <span data-i18n="lbl_age">Âge (années)</span></label>
+                <input type="number" id="age" min="14" max="55" placeholder="28" data-i18n-ph="ph_age">
+            </div>
+            <div class="form-group">
+                <label>📅 <span data-i18n="lbl_weeks">Semaine d'aménorrhée (SA)</span></label>
+                <input type="number" id="weeks" min="1" max="42" placeholder="20" data-i18n-ph="ph_weeks">
+            </div>
+            <div class="form-group">
+                <label>⚖️ <span data-i18n="lbl_weight">Poids actuel (kg)</span></label>
+                <input type="number" id="weight" min="30" max="200" step="0.1" placeholder="65" data-i18n-ph="ph_weight">
+            </div>
+            <div class="form-group">
+                <label>📏 <span data-i18n="lbl_height">Taille (cm)</span></label>
+                <input type="number" id="height" min="130" max="220" placeholder="165" data-i18n-ph="ph_height">
+            </div>
+            <div class="form-group">
+                <label>⚖️ <span data-i18n="lbl_preweight">Poids avant grossesse (kg)</span></label>
+                <input type="number" id="preWeight" min="30" max="200" step="0.1" placeholder="60" data-i18n-ph="ph_preweight">
+            </div>
+            <div class="form-group">
+                <label>🩸 <span data-i18n="lbl_bloodtype">Groupe sanguin</span></label>
+                <select id="bloodType">
+                    <option value="">—</option>
+                    <option value="A+">A+</option><option value="A-">A-</option>
+                    <option value="B+">B+</option><option value="B-">B-</option>
+                    <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                    <option value="O+">O+</option><option value="O-">O-</option>
+                </select>
+            </div>
+        </div>
+
+        <hr class="section-sep">
+
+        <!-- Section 2: Obstetric History -->
+        <div class="form-section-title" style="margin-top:20px">🤰 <span data-i18n="sec2">Antécédents obstétricaux</span></div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>🔢 <span data-i18n="lbl_gravida">Gestité (nombre de grossesses)</span></label>
+                <input type="number" id="gravida" min="1" max="15" placeholder="1" data-i18n-ph="ph_gravida">
+            </div>
+            <div class="form-group">
+                <label>👶 <span data-i18n="lbl_para">Parité (accouchements passés)</span></label>
+                <input type="number" id="para" min="0" max="15" placeholder="0" data-i18n-ph="ph_para">
+            </div>
+            <div class="form-group">
+                <label>🔁 <span data-i18n="lbl_miscarriages">Fausses couches</span></label>
+                <input type="number" id="miscarriages" min="0" max="10" placeholder="0" data-i18n-ph="ph_miscarriages">
+            </div>
+            <div class="form-group">
+                <label>🏥 <span data-i18n="lbl_csection">Césariennes antérieures</span></label>
+                <input type="number" id="csection" min="0" max="10" placeholder="0" data-i18n-ph="ph_csection">
+            </div>
+            <div class="form-group full">
+                <label>⚠️ <span data-i18n="lbl_prevcomp">Complications lors de grossesses précédentes</span></label>
+                <div class="check-group" id="prevcomp">
+                    <label><input type="checkbox" value="preeclampsia"> <span data-i18n="comp_pre">Pré-éclampsie</span></label>
+                    <label><input type="checkbox" value="gdm"> <span data-i18n="comp_gdm">Diabète gestationnel</span></label>
+                    <label><input type="checkbox" value="premature"> <span data-i18n="comp_prem">Prématurité</span></label>
+                    <label><input type="checkbox" value="hemorrhage"> <span data-i18n="comp_hem">Hémorragie</span></label>
+                    <label><input type="checkbox" value="none"> <span data-i18n="comp_none">Aucune</span></label>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-sep">
+
+        <!-- Section 3: Current Pregnancy Symptoms -->
+        <div class="form-section-title" style="margin-top:20px">💊 <span data-i18n="sec3">Santé actuelle & symptômes</span></div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>💓 <span data-i18n="lbl_bp">Tension artérielle (ex: 120/80)</span></label>
+                <input type="text" id="bp" placeholder="120/80" data-i18n-ph="ph_bp">
+            </div>
+            <div class="form-group">
+                <label>🩸 <span data-i18n="lbl_hb">Hémoglobine (g/dL)</span></label>
+                <input type="number" id="hb" min="5" max="20" step="0.1" placeholder="11.5" data-i18n-ph="ph_hb">
+            </div>
+            <div class="form-group">
+                <label>🍬 <span data-i18n="lbl_glucose">Glycémie à jeun (mmol/L)</span></label>
+                <input type="number" id="glucose" min="2" max="20" step="0.1" placeholder="4.5" data-i18n-ph="ph_glucose">
+            </div>
+            <div class="form-group">
+                <label>🦶 <span data-i18n="lbl_edema">Œdèmes</span></label>
+                <select id="edema">
+                    <option value="none" data-i18n="edema_none">Aucun</option>
+                    <option value="mild" data-i18n="edema_mild">Légers (chevilles)</option>
+                    <option value="moderate" data-i18n="edema_mod">Modérés</option>
+                    <option value="severe" data-i18n="edema_sev">Sévères (généralisés)</option>
+                </select>
+            </div>
+            <div class="form-group full">
+                <label>🤒 <span data-i18n="lbl_symptoms">Symptômes actuels</span></label>
+                <div class="check-group" id="symptoms">
+                    <label><input type="checkbox" value="nausea"> <span data-i18n="sym_nausea">Nausées</span></label>
+                    <label><input type="checkbox" value="vomiting"> <span data-i18n="sym_vomit">Vomissements</span></label>
+                    <label><input type="checkbox" value="fatigue"> <span data-i18n="sym_fatigue">Fatigue intense</span></label>
+                    <label><input type="checkbox" value="back_pain"> <span data-i18n="sym_back">Douleurs dorsales</span></label>
+                    <label><input type="checkbox" value="headache"> <span data-i18n="sym_head">Maux de tête</span></label>
+                    <label><input type="checkbox" value="blurred_vision"> <span data-i18n="sym_vis">Troubles visuels</span></label>
+                    <label><input type="checkbox" value="shortness_breath"> <span data-i18n="sym_breath">Essoufflement</span></label>
+                    <label><input type="checkbox" value="contractions"> <span data-i18n="sym_cont">Contractions</span></label>
+                    <label><input type="checkbox" value="discharge"> <span data-i18n="sym_dis">Pertes inhabituelles</span></label>
+                    <label><input type="checkbox" value="none"> <span data-i18n="sym_none">Aucun symptôme</span></label>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-sep">
+
+        <!-- Section 4: Lifestyle -->
+        <div class="form-section-title" style="margin-top:20px">🌿 <span data-i18n="sec4">Mode de vie & habitudes</span></div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>🏃 <span data-i18n="lbl_activity">Activité physique</span></label>
+                <select id="activity">
+                    <option value="none" data-i18n="act_none">Sédentaire</option>
+                    <option value="light" data-i18n="act_light">Légère (marche)</option>
+                    <option value="moderate" data-i18n="act_mod">Modérée</option>
+                    <option value="intense" data-i18n="act_int">Intense</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>🍽️ <span data-i18n="lbl_diet">Qualité alimentaire</span></label>
+                <select id="diet">
+                    <option value="poor" data-i18n="diet_poor">Insuffisante</option>
+                    <option value="fair" data-i18n="diet_fair">Moyenne</option>
+                    <option value="good" data-i18n="diet_good">Bonne</option>
+                    <option value="excellent" data-i18n="diet_exc">Excellente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>💤 <span data-i18n="lbl_sleep">Qualité du sommeil</span></label>
+                <select id="sleep">
+                    <option value="poor" data-i18n="sleep_poor">Mauvaise</option>
+                    <option value="fair" data-i18n="sleep_fair">Passable</option>
+                    <option value="good" data-i18n="sleep_good">Bonne</option>
+                    <option value="excellent" data-i18n="sleep_exc">Excellente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>😰 <span data-i18n="lbl_stress">Niveau de stress (1-10)</span></label>
+                <div class="range-wrap">
+                    <input type="range" id="stress" min="1" max="10" value="4" oninput="document.getElementById('stressVal').textContent=this.value">
+                    <div class="range-val"><span id="stressVal">4</span>/10</div>
+                </div>
+            </div>
+            <div class="form-group full">
+                <label>⚠️ <span data-i18n="lbl_habits">Facteurs à risque</span></label>
+                <div class="check-group" id="habits">
+                    <label><input type="checkbox" value="smoking"> <span data-i18n="hab_smoke">Tabagisme</span></label>
+                    <label><input type="checkbox" value="alcohol"> <span data-i18n="hab_alc">Alcool</span></label>
+                    <label><input type="checkbox" value="caffeine"> <span data-i18n="hab_caf">Caféine excessive</span></label>
+                    <label><input type="checkbox" value="none"> <span data-i18n="hab_none">Aucun</span></label>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-sep">
+
+        <!-- Section 5: Medical Background -->
+        <div class="form-section-title" style="margin-top:20px">🏥 <span data-i18n="sec5">Antécédents médicaux</span></div>
+        <div class="form-grid">
+            <div class="form-group full">
+                <label>🩺 <span data-i18n="lbl_conditions">Maladies chroniques</span></label>
+                <div class="check-group" id="conditions">
+                    <label><input type="checkbox" value="diabetes"> <span data-i18n="cond_diab">Diabète</span></label>
+                    <label><input type="checkbox" value="hypertension"> <span data-i18n="cond_htn">Hypertension</span></label>
+                    <label><input type="checkbox" value="thyroid"> <span data-i18n="cond_thy">Thyroïde</span></label>
+                    <label><input type="checkbox" value="anemia"> <span data-i18n="cond_anemia">Anémie</span></label>
+                    <label><input type="checkbox" value="cardiac"> <span data-i18n="cond_card">Cardiopathie</span></label>
+                    <label><input type="checkbox" value="asthma"> <span data-i18n="cond_asth">Asthme</span></label>
+                    <label><input type="checkbox" value="none"> <span data-i18n="cond_none">Aucune</span></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>💊 <span data-i18n="lbl_supplements">Suppléments pris</span></label>
+                <div class="check-group" id="supplements">
+                    <label><input type="checkbox" value="folate"> <span data-i18n="sup_fol">Acide folique</span></label>
+                    <label><input type="checkbox" value="iron"> <span data-i18n="sup_iron">Fer</span></label>
+                    <label><input type="checkbox" value="vitd"> <span data-i18n="sup_vitd">Vitamine D</span></label>
+                    <label><input type="checkbox" value="omega"> <span data-i18n="sup_ome">Oméga-3</span></label>
+                    <label><input type="checkbox" value="none"> <span data-i18n="sup_none">Aucun</span></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>🔬 <span data-i18n="lbl_echos">Échographies réalisées</span></label>
+                <select id="echos">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3+">3+</option>
+                </select>
+            </div>
+            <div class="form-group full">
+                <label>📝 <span data-i18n="lbl_concerns">Préoccupations ou questions particulières</span></label>
+                <textarea id="concerns" rows="3" data-i18n-ph="ph_concerns" placeholder="Décrivez vos préoccupations…"></textarea>
+            </div>
+        </div>
+
+        <div class="error-msg" id="errorMsg" data-i18n="errorMsg">⚠️ Veuillez remplir au minimum l'âge, la semaine de grossesse, le poids et la taille.</div>
+
+        <button class="submit-btn" id="submitBtn" onclick="analyzeForm()">
+            <span data-i18n="submitBtn">🔍 Analyser mon bilan de santé</span>
+        </button>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="resultsSection">
+        <div class="results-header">
+            <h2 data-i18n="resultsTitle">📊 Votre Bilan de Santé Personnalisé</h2>
+            <p id="resultsSubtitle" data-i18n="resultsSub">Analyse basée sur vos données — consultez toujours un professionnel de santé</p>
+        </div>
+        <div class="results-body">
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="analysis-section" id="analysisSection"></div>
+        </div>
+        <button class="submit-btn" style="margin-top:16px; background:linear-gradient(135deg,var(--pk),var(--pk2));" onclick="resetForm()">
+            ↩ <span data-i18n="newBilan">Nouveau bilan</span>
+        </button>
+    </div>
+
+</div>
+
+<footer>
+    <span data-i18n="bilanFooter">💗 Bilan Santé Grossesse — Guide de la Femme Enceinte | Informations à titre indicatif uniquement</span>
+</footer>
+
+<script>
+/* ============================================================
+   TRANSLATIONS
+   ============================================================ */
+const T = {
+fr: {
+    bilanPageTitle:"Bilan Santé — Grossesse",
+    bilanHeader:"📋 Bilan Santé Grossesse",
+    bilanBadge:"Évaluation Médicale Personnalisée",
+    bilanIntroTitle:"Votre bilan de santé prénatal",
+    bilanIntroText:"Remplissez ce formulaire complet pour recevoir une analyse personnalisée de votre état de santé pendant la grossesse, avec des statistiques, des indicateurs clés et des conseils médicaux adaptés à votre situation.",
+    backBtn:"Retour au guide",
+    loadingTitle:"Analyse en cours…",
+    loadingSub:"Notre IA analyse votre bilan de santé",
+    sec1:"Informations générales", sec2:"Antécédents obstétricaux",
+    sec3:"Santé actuelle & symptômes", sec4:"Mode de vie & habitudes", sec5:"Antécédents médicaux",
+    lbl_age:"Âge (années)", lbl_weeks:"Semaine d'aménorrhée (SA)",
+    lbl_weight:"Poids actuel (kg)", lbl_height:"Taille (cm)", lbl_preweight:"Poids avant grossesse (kg)",
+    lbl_bloodtype:"Groupe sanguin", lbl_gravida:"Gestité (grossesses)", lbl_para:"Parité (accouchements)",
+    lbl_miscarriages:"Fausses couches", lbl_csection:"Césariennes antérieures",
+    lbl_prevcomp:"Complications antérieures", lbl_bp:"Tension artérielle",
+    lbl_hb:"Hémoglobine (g/dL)", lbl_glucose:"Glycémie à jeun (mmol/L)",
+    lbl_edema:"Œdèmes", lbl_symptoms:"Symptômes actuels", lbl_activity:"Activité physique",
+    lbl_diet:"Qualité alimentaire", lbl_sleep:"Qualité du sommeil", lbl_stress:"Niveau de stress (1-10)",
+    lbl_habits:"Facteurs à risque", lbl_conditions:"Maladies chroniques",
+    lbl_supplements:"Suppléments pris", lbl_echos:"Échographies réalisées",
+    lbl_concerns:"Préoccupations particulières",
+    ph_age:"28", ph_weeks:"20", ph_weight:"65", ph_height:"165", ph_preweight:"60",
+    ph_gravida:"1", ph_para:"0", ph_miscarriages:"0", ph_csection:"0",
+    ph_bp:"120/80", ph_hb:"11.5", ph_glucose:"4.5",
+    ph_concerns:"Décrivez vos préoccupations…",
+    comp_pre:"Pré-éclampsie", comp_gdm:"Diabète gestationnel", comp_prem:"Prématurité",
+    comp_hem:"Hémorragie", comp_none:"Aucune",
+    edema_none:"Aucun", edema_mild:"Légers (chevilles)", edema_mod:"Modérés", edema_sev:"Sévères",
+    sym_nausea:"Nausées", sym_vomit:"Vomissements", sym_fatigue:"Fatigue intense",
+    sym_back:"Douleurs dorsales", sym_head:"Maux de tête", sym_vis:"Troubles visuels",
+    sym_breath:"Essoufflement", sym_cont:"Contractions", sym_dis:"Pertes inhabituelles", sym_none:"Aucun",
+    act_none:"Sédentaire", act_light:"Légère (marche)", act_mod:"Modérée", act_int:"Intense",
+    diet_poor:"Insuffisante", diet_fair:"Moyenne", diet_good:"Bonne", diet_exc:"Excellente",
+    sleep_poor:"Mauvaise", sleep_fair:"Passable", sleep_good:"Bonne", sleep_exc:"Excellente",
+    hab_smoke:"Tabagisme", hab_alc:"Alcool", hab_caf:"Caféine excessive", hab_none:"Aucun",
+    cond_diab:"Diabète", cond_htn:"Hypertension", cond_thy:"Thyroïde", cond_anemia:"Anémie",
+    cond_card:"Cardiopathie", cond_asth:"Asthme", cond_none:"Aucune",
+    sup_fol:"Acide folique", sup_iron:"Fer", sup_vitd:"Vitamine D", sup_ome:"Oméga-3", sup_none:"Aucun",
+    submitBtn:"🔍 Analyser mon bilan de santé",
+    errorMsg:"⚠️ Veuillez remplir au minimum l'âge, la semaine de grossesse, le poids et la taille.",
+    resultsTitle:"📊 Votre Bilan de Santé Personnalisé",
+    resultsSub:"Analyse basée sur vos données — consultez toujours un professionnel de santé",
+    newBilan:"↩ Nouveau bilan",
+    bilanFooter:"💗 Bilan Santé Grossesse — Guide de la Femme Enceinte | Informations à titre indicatif uniquement",
+    stat_bmi:"IMC", stat_trimester:"Trimestre", stat_gain:"Prise de poids",
+    stat_hb:"Hémoglobine", stat_bp:"Tension", stat_risk:"Niveau de risque",
+    stat_t1:"1er Trimestre", stat_t2:"2e Trimestre", stat_t3:"3e Trimestre",
+    aiPromptLang:"Réponds entièrement en français."
+},
+en: {
+    bilanPageTitle:"Health Assessment — Pregnancy",
+    bilanHeader:"📋 Pregnancy Health Assessment",
+    bilanBadge:"Personalized Medical Evaluation",
+    bilanIntroTitle:"Your prenatal health assessment",
+    bilanIntroText:"Complete this comprehensive form to receive a personalized analysis of your health status during pregnancy, with statistics, key indicators and medical advice tailored to your situation.",
+    backBtn:"Back to guide",
+    loadingTitle:"Analysing…",
+    loadingSub:"Our AI is analysing your health data",
+    sec1:"General information", sec2:"Obstetric history",
+    sec3:"Current health & symptoms", sec4:"Lifestyle & habits", sec5:"Medical background",
+    lbl_age:"Age (years)", lbl_weeks:"Gestational age (weeks)",
+    lbl_weight:"Current weight (kg)", lbl_height:"Height (cm)", lbl_preweight:"Pre-pregnancy weight (kg)",
+    lbl_bloodtype:"Blood type", lbl_gravida:"Gravida (total pregnancies)", lbl_para:"Parity (past deliveries)",
+    lbl_miscarriages:"Miscarriages", lbl_csection:"Previous C-sections",
+    lbl_prevcomp:"Previous complications", lbl_bp:"Blood pressure",
+    lbl_hb:"Haemoglobin (g/dL)", lbl_glucose:"Fasting blood glucose (mmol/L)",
+    lbl_edema:"Oedema", lbl_symptoms:"Current symptoms", lbl_activity:"Physical activity",
+    lbl_diet:"Diet quality", lbl_sleep:"Sleep quality", lbl_stress:"Stress level (1-10)",
+    lbl_habits:"Risk factors", lbl_conditions:"Chronic conditions",
+    lbl_supplements:"Supplements taken", lbl_echos:"Ultrasounds performed",
+    lbl_concerns:"Special concerns",
+    ph_age:"28", ph_weeks:"20", ph_weight:"65", ph_height:"165", ph_preweight:"60",
+    ph_gravida:"1", ph_para:"0", ph_miscarriages:"0", ph_csection:"0",
+    ph_bp:"120/80", ph_hb:"11.5", ph_glucose:"4.5",
+    ph_concerns:"Describe your concerns…",
+    comp_pre:"Pre-eclampsia", comp_gdm:"Gestational diabetes", comp_prem:"Premature birth",
+    comp_hem:"Haemorrhage", comp_none:"None",
+    edema_none:"None", edema_mild:"Mild (ankles)", edema_mod:"Moderate", edema_sev:"Severe",
+    sym_nausea:"Nausea", sym_vomit:"Vomiting", sym_fatigue:"Intense fatigue",
+    sym_back:"Back pain", sym_head:"Headaches", sym_vis:"Visual disturbances",
+    sym_breath:"Shortness of breath", sym_cont:"Contractions", sym_dis:"Unusual discharge", sym_none:"None",
+    act_none:"Sedentary", act_light:"Light (walking)", act_mod:"Moderate", act_int:"Intense",
+    diet_poor:"Poor", diet_fair:"Average", diet_good:"Good", diet_exc:"Excellent",
+    sleep_poor:"Poor", sleep_fair:"Fair", sleep_good:"Good", sleep_exc:"Excellent",
+    hab_smoke:"Smoking", hab_alc:"Alcohol", hab_caf:"Excessive caffeine", hab_none:"None",
+    cond_diab:"Diabetes", cond_htn:"Hypertension", cond_thy:"Thyroid", cond_anemia:"Anaemia",
+    cond_card:"Cardiac disease", cond_asth:"Asthma", cond_none:"None",
+    sup_fol:"Folic acid", sup_iron:"Iron", sup_vitd:"Vitamin D", sup_ome:"Omega-3", sup_none:"None",
+    submitBtn:"🔍 Analyse my health assessment",
+    errorMsg:"⚠️ Please fill in at minimum your age, gestational week, weight and height.",
+    resultsTitle:"📊 Your Personalized Health Assessment",
+    resultsSub:"Analysis based on your data — always consult a healthcare professional",
+    newBilan:"↩ New assessment",
+    bilanFooter:"💗 Pregnancy Health Assessment — Pregnancy Guide | For informational purposes only",
+    stat_bmi:"BMI", stat_trimester:"Trimester", stat_gain:"Weight gain",
+    stat_hb:"Haemoglobin", stat_bp:"Blood pressure", stat_risk:"Risk level",
+    stat_t1:"1st Trimester", stat_t2:"2nd Trimester", stat_t3:"3rd Trimester",
+    aiPromptLang:"Reply entirely in English."
+},
+ar: {
+    bilanPageTitle:"تقييم الصحة — الحمل",
+    bilanHeader:"📋 تقييم صحة الحمل",
+    bilanBadge:"تقييم طبي شخصي",
+    bilanIntroTitle:"تقييمكِ الصحي قبل الولادة",
+    bilanIntroText:"أكملي هذا الاستبيان الشامل للحصول على تحليل شخصي لحالتكِ الصحية خلال الحمل، مع إحصاءات ومؤشرات رئيسية ونصائح طبية مخصصة لوضعكِ.",
+    backBtn:"العودة إلى الدليل",
+    loadingTitle:"جارٍ التحليل…",
+    loadingSub:"يقوم الذكاء الاصطناعي بتحليل بيانات صحتكِ",
+    sec1:"المعلومات العامة", sec2:"السوابق التوليدية",
+    sec3:"الصحة الحالية والأعراض", sec4:"نمط الحياة والعادات", sec5:"السوابق الطبية",
+    lbl_age:"العمر (سنوات)", lbl_weeks:"أسبوع الحمل",
+    lbl_weight:"الوزن الحالي (كغ)", lbl_height:"الطول (سم)", lbl_preweight:"الوزن قبل الحمل (كغ)",
+    lbl_bloodtype:"فصيلة الدم", lbl_gravida:"عدد الحملات الإجمالي", lbl_para:"عدد الولادات السابقة",
+    lbl_miscarriages:"الإجهاضات", lbl_csection:"العمليات القيصرية السابقة",
+    lbl_prevcomp:"مضاعفات سابقة", lbl_bp:"ضغط الدم",
+    lbl_hb:"الهيموغلوبين (غ/ديسيلتر)", lbl_glucose:"سكر الدم الصيامي (مليمول/لتر)",
+    lbl_edema:"الوذمة", lbl_symptoms:"الأعراض الحالية", lbl_activity:"النشاط البدني",
+    lbl_diet:"جودة التغذية", lbl_sleep:"جودة النوم", lbl_stress:"مستوى التوتر (1-10)",
+    lbl_habits:"عوامل الخطر", lbl_conditions:"الأمراض المزمنة",
+    lbl_supplements:"المكملات الغذائية", lbl_echos:"الفحوصات بالموجات فوق الصوتية",
+    lbl_concerns:"مخاوف خاصة",
+    ph_age:"28", ph_weeks:"20", ph_weight:"65", ph_height:"165", ph_preweight:"60",
+    ph_gravida:"1", ph_para:"0", ph_miscarriages:"0", ph_csection:"0",
+    ph_bp:"120/80", ph_hb:"11.5", ph_glucose:"4.5",
+    ph_concerns:"صفي مخاوفكِ…",
+    comp_pre:"ما قبل الإرجاء", comp_gdm:"سكري الحمل", comp_prem:"الولادة المبكرة",
+    comp_hem:"النزيف", comp_none:"لا شيء",
+    edema_none:"لا يوجد", edema_mild:"خفيفة (كاحلان)", edema_mod:"معتدلة", edema_sev:"شديدة",
+    sym_nausea:"غثيان", sym_vomit:"تقيؤ", sym_fatigue:"إرهاق شديد",
+    sym_back:"آلام الظهر", sym_head:"صداع", sym_vis:"اضطرابات بصرية",
+    sym_breath:"ضيق التنفس", sym_cont:"انقباضات", sym_dis:"إفرازات غير اعتيادية", sym_none:"لا شيء",
+    act_none:"خاملة", act_light:"خفيفة (مشي)", act_mod:"معتدلة", act_int:"مكثفة",
+    diet_poor:"ضعيفة", diet_fair:"متوسطة", diet_good:"جيدة", diet_exc:"ممتازة",
+    sleep_poor:"سيئة", sleep_fair:"مقبولة", sleep_good:"جيدة", sleep_exc:"ممتازة",
+    hab_smoke:"التدخين", hab_alc:"الكحول", hab_caf:"الكافيين المفرط", hab_none:"لا شيء",
+    cond_diab:"السكري", cond_htn:"ضغط الدم المرتفع", cond_thy:"الغدة الدرقية", cond_anemia:"فقر الدم",
+    cond_card:"أمراض القلب", cond_asth:"الربو", cond_none:"لا شيء",
+    sup_fol:"حمض الفوليك", sup_iron:"الحديد", sup_vitd:"فيتامين د", sup_ome:"أوميغا-3", sup_none:"لا شيء",
+    submitBtn:"🔍 تحليل تقييمي الصحي",
+    errorMsg:"⚠️ يرجى ملء الحد الأدنى: العمر، أسبوع الحمل، الوزن، والطول.",
+    resultsTitle:"📊 تقييمكِ الصحي الشخصي",
+    resultsSub:"تحليل مبني على بياناتكِ — استشيري دائماً مختصاً صحياً",
+    newBilan:"↩ تقييم جديد",
+    bilanFooter:"💗 تقييم صحة الحمل — دليل المرأة الحامل | للأغراض الإعلامية فحسب",
+    stat_bmi:"مؤشر كتلة الجسم", stat_trimester:"الثلث", stat_gain:"اكتساب الوزن",
+    stat_hb:"الهيموغلوبين", stat_bp:"ضغط الدم", stat_risk:"مستوى الخطر",
+    stat_t1:"الثلث الأول", stat_t2:"الثلث الثاني", stat_t3:"الثلث الثالث",
+    aiPromptLang:"أجب بالكامل باللغة العربية."
+}
+};
+
+/* ============================================================
+   LANGUAGE
+   ============================================================ */
+let currentLang = localStorage.getItem('lang') || 'fr';
+
+function changeLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+    // Apply all data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[k] !== undefined) el.textContent = t[k];
+    });
+    // Apply placeholders
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const k = el.getAttribute('data-i18n-ph');
+        if (t[k] !== undefined) el.placeholder = t[k];
+    });
+    // Title
+    document.title = t.bilanPageTitle;
+    // Highlight active lang btn
+    ['fr','en','ar'].forEach(l => {
+        const b = document.getElementById('btn-'+l);
+        if (b) b.classList.toggle('active', l === lang);
+    });
+    // Translate select options with data-i18n
+    document.querySelectorAll('select option[data-i18n]').forEach(opt => {
+        const k = opt.getAttribute('data-i18n');
+        if (t[k]) opt.textContent = t[k];
+    });
+}
+
+/* ============================================================
+   DARK MODE (synced with main site)
+   ============================================================ */
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+/* ============================================================
+   CALCULATIONS
+   ============================================================ */
+function calcBMI(weight, height) {
+    if (!weight || !height) return null;
+    return (weight / ((height/100) ** 2)).toFixed(1);
+}
+
+function getBMICategory(bmi, lang) {
+    const labels = {
+        fr: { under:'Insuffisance pondérale', normal:'Poids normal', over:'Surpoids', obese:'Obésité' },
+        en: { under:'Underweight', normal:'Normal weight', over:'Overweight', obese:'Obese' },
+        ar: { under:'نقص الوزن', normal:'وزن طبيعي', over:'زيادة الوزن', obese:'سمنة' }
+    };
+    const l = labels[lang] || labels.fr;
+    if (bmi < 18.5) return { label: l.under, cls: 'warn' };
+    if (bmi < 25) return { label: l.normal, cls: 'ok' };
+    if (bmi < 30) return { label: l.over, cls: 'warn' };
+    return { label: l.obese, cls: 'alert' };
+}
+
+function getTrimester(weeks, lang) {
+    const t = T[lang];
+    if (weeks <= 13) return { label: t.stat_t1, cls: 'ok' };
+    if (weeks <= 26) return { label: t.stat_t2, cls: 'ok' };
+    return { label: t.stat_t3, cls: 'warn' };
+}
+
+function getWeightGain(current, pre, weeks, lang) {
+    if (!current || !pre) return null;
+    const gain = (current - pre).toFixed(1);
+    const labels = { fr:['kg gagnés','Optimal','Insuffisant','Excessif'], en:['kg gained','Optimal','Insufficient','Excessive'], ar:['كغ مكتسبة','مثالي','غير كافٍ','مفرط'] };
+    const l = labels[lang] || labels.fr;
+    // Rough expected gain by trimester
+    let expected = 0;
+    if (weeks <= 13) expected = 1.5;
+    else if (weeks <= 26) expected = 6;
+    else expected = 11;
+    let cls = 'ok', badge = l[1];
+    if (gain < expected * 0.5) { cls = 'warn'; badge = l[2]; }
+    if (gain > expected * 1.5) { cls = 'warn'; badge = l[3]; }
+    return { value: `${gain} ${l[0]}`, cls, badge };
+}
+
+function getHbStatus(hb, lang) {
+    if (!hb) return null;
+    const labels = { fr:['Normal','Anémie légère','Anémie sévère'], en:['Normal','Mild anaemia','Severe anaemia'], ar:['طبيعي','فقر دم خفيف','فقر دم حاد'] };
+    const l = labels[lang] || labels.fr;
+    if (hb >= 11) return { label: l[0], cls: 'ok' };
+    if (hb >= 8) return { label: l[1], cls: 'warn' };
+    return { label: l[2], cls: 'alert' };
+}
+
+function getBPStatus(bp, lang) {
+    if (!bp || !bp.includes('/')) return null;
+    const [sys, dia] = bp.split('/').map(Number);
+    const labels = { fr:['Normale','Élevée','Hypotension'], en:['Normal','Elevated','Hypotension'], ar:['طبيعي','مرتفع','انخفاض ضغط'] };
+    const l = labels[lang] || labels.fr;
+    if (sys < 90 || dia < 60) return { label: l[2], cls: 'warn', value: bp };
+    if (sys >= 140 || dia >= 90) return { label: l[1], cls: 'alert', value: bp };
+    return { label: l[0], cls: 'ok', value: bp };
+}
+
+function getRiskLevel(data) {
+    let score = 0;
+    const syms = data.symptoms;
+    if (syms.includes('blurred_vision') || syms.includes('headache')) score += 2;
+    if (syms.includes('contractions') && data.weeks < 37) score += 3;
+    if (data.conditions.includes('hypertension') || data.conditions.includes('diabetes')) score += 2;
+    if (data.prevcomp.includes('preeclampsia')) score += 2;
+    if (data.habits.includes('smoking')) score += 2;
+    if (data.habits.includes('alcohol')) score += 3;
+    if (data.edema === 'severe') score += 2;
+    if (data.bp) {
+        const [sys] = data.bp.split('/').map(Number);
+        if (sys >= 140) score += 3;
+    }
+    if (score === 0) return { level:'Faible', en:'Low', ar:'منخفض', cls:'ok', pct: 15 };
+    if (score <= 3) return { level:'Modéré', en:'Moderate', ar:'متوسط', cls:'warn', pct: 50 };
+    return { level:'Élevé', en:'High', ar:'مرتفع', cls:'alert', pct: 85 };
+}
+
+/* ============================================================
+   COLLECT FORM DATA
+   ============================================================ */
+function getChecked(groupId) {
+    return [...document.querySelectorAll(`#${groupId} input:checked`)].map(i => i.value);
+}
+
+function collectData() {
+    return {
+        age: +document.getElementById('age').value || null,
+        weeks: +document.getElementById('weeks').value || null,
+        weight: +document.getElementById('weight').value || null,
+        height: +document.getElementById('height').value || null,
+        preWeight: +document.getElementById('preWeight').value || null,
+        bloodType: document.getElementById('bloodType').value,
+        gravida: +document.getElementById('gravida').value || null,
+        para: +document.getElementById('para').value || null,
+        miscarriages: +document.getElementById('miscarriages').value || null,
+        csection: +document.getElementById('csection').value || null,
+        prevcomp: getChecked('prevcomp'),
+        bp: document.getElementById('bp').value.trim(),
+        hb: +document.getElementById('hb').value || null,
+        glucose: +document.getElementById('glucose').value || null,
+        edema: document.getElementById('edema').value,
+        symptoms: getChecked('symptoms'),
+        activity: document.getElementById('activity').value,
+        diet: document.getElementById('diet').value,
+        sleep: document.getElementById('sleep').value,
+        stress: +document.getElementById('stress').value,
+        habits: getChecked('habits'),
+        conditions: getChecked('conditions'),
+        supplements: getChecked('supplements'),
+        echos: document.getElementById('echos').value,
+        concerns: document.getElementById('concerns').value.trim()
+    };
+}
+
+/* ============================================================
+   BUILD STAT CARDS
+   ============================================================ */
+function buildStats(data, lang) {
+    const t = T[lang];
+    const bmi = calcBMI(data.weight, data.height);
+    const bmiCat = bmi ? getBMICategory(+bmi, lang) : null;
+    const tri = data.weeks ? getTrimester(data.weeks, lang) : null;
+    const gain = getWeightGain(data.weight, data.preWeight, data.weeks, lang);
+    const hbSt = getHbStatus(data.hb, lang);
+    const bpSt = getBPStatus(data.bp, lang);
+    const risk = getRiskLevel(data);
+    const riskLabel = lang==='ar' ? risk.ar : lang==='en' ? risk.en : risk.level;
+
+    const cards = [
+        bmi ? `<div class="stat-card"><span class="stat-icon">⚖️</span><span class="stat-value">${bmi}</span><span class="stat-label">${t.stat_bmi}</span><span class="stat-badge badge-${bmiCat.cls}">${bmiCat.label}</span></div>` : '',
+        tri ? `<div class="stat-card"><span class="stat-icon">🗓️</span><span class="stat-value">${data.weeks} SA</span><span class="stat-label">${t.stat_trimester}</span><span class="stat-badge badge-ok">${tri.label}</span></div>` : '',
+        gain ? `<div class="stat-card"><span class="stat-icon">📈</span><span class="stat-value">${gain.value}</span><span class="stat-label">${t.stat_gain}</span><span class="stat-badge badge-${gain.cls}">${gain.badge}</span></div>` : '',
+        hbSt ? `<div class="stat-card"><span class="stat-icon">🩸</span><span class="stat-value">${data.hb} g/dL</span><span class="stat-label">${t.stat_hb}</span><span class="stat-badge badge-${hbSt.cls}">${hbSt.label}</span></div>` : '',
+        bpSt ? `<div class="stat-card"><span class="stat-icon">💓</span><span class="stat-value">${bpSt.value}</span><span class="stat-label">${t.stat_bp}</span><span class="stat-badge badge-${bpSt.cls}">${bpSt.label}</span></div>` : '',
+        `<div class="stat-card"><span class="stat-icon">⚠️</span><span class="stat-value" style="font-size:18px">${riskLabel}</span><span class="stat-label">${t.stat_risk}</span><div class="prog-wrap" style="margin-top:6px"><div class="prog-bar"><div class="prog-fill ${risk.cls==='alert'?'alert':risk.cls==='warn'?'warn':''}" style="width:${risk.pct}%"></div></div></div></div>`
+    ].filter(Boolean).join('');
+
+    document.getElementById('statsGrid').innerHTML = cards;
+}
+
+/* ============================================================
+   BUILD AI PROMPT
+   ============================================================ */
+function buildPrompt(data, lang) {
+    const t = T[lang];
+    const bmi = calcBMI(data.weight, data.height);
+    const gain = data.weight && data.preWeight ? (data.weight - data.preWeight).toFixed(1) : 'non renseigné';
+
+    return `${t.aiPromptLang}
+
+Tu es un médecin obstétricien expert. Analyse le bilan de santé complet de cette femme enceinte et génère un rapport structuré et professionnel.
+
+DONNÉES PATIENTE:
+- Âge: ${data.age} ans | SA: ${data.weeks} semaines
+- Poids: ${data.weight}kg | Taille: ${data.height}cm | IMC: ${bmi}
+- Poids avant grossesse: ${data.preWeight}kg | Prise de poids: ${gain}kg
+- Groupe sanguin: ${data.bloodType || 'inconnu'}
+- Gestité/Parité: G${data.gravida}/P${data.para} | Fausses couches: ${data.miscarriages} | Césariennes: ${data.csection}
+- Complications antérieures: ${data.prevcomp.join(', ') || 'aucune'}
+- Tension artérielle: ${data.bp || 'non renseignée'} | Hémoglobine: ${data.hb || 'non renseignée'} g/dL
+- Glycémie à jeun: ${data.glucose || 'non renseignée'} mmol/L | Œdèmes: ${data.edema}
+- Symptômes: ${data.symptoms.join(', ') || 'aucun'}
+- Activité physique: ${data.activity} | Alimentation: ${data.diet} | Sommeil: ${data.sleep} | Stress: ${data.stress}/10
+- Facteurs de risque: ${data.habits.join(', ') || 'aucun'}
+- Maladies chroniques: ${data.conditions.join(', ') || 'aucune'}
+- Suppléments: ${data.supplements.join(', ') || 'aucun'}
+- Échographies: ${data.echos} | Préoccupations: ${data.concerns || 'aucune'}
+
+Génère un rapport JSON strictement valide (sans markdown, sans backticks, juste le JSON pur) avec exactement cette structure:
+{
+  "globalStatus": "phrase d'évaluation globale (1-2 phrases)",
+  "alerts": ["alerte urgente 1", "alerte urgente 2"],
+  "positives": ["point positif 1", "point positif 2", "point positif 3"],
+  "nutritionAdvice": ["conseil nutrition 1", "conseil nutrition 2", "conseil nutrition 3"],
+  "activityAdvice": ["conseil activité 1", "conseil activité 2"],
+  "mentalHealth": ["conseil santé mentale 1", "conseil santé mentale 2"],
+  "medicalWatch": ["surveillance médicale 1", "surveillance médicale 2", "surveillance médicale 3"],
+  "weeklyTips": ["conseil semaine ${data.weeks || 20} 1", "conseil semaine ${data.weeks || 20} 2", "conseil semaine ${data.weeks || 20} 3"],
+  "urgentConsult": true_ou_false,
+  "urgentReason": "raison si urgentConsult est true"
+}`;
+}
+
+/* ============================================================
+   RENDER AI RESULTS
+   ============================================================ */
+function renderAIResults(parsed, lang) {
+    const labels = {
+        fr: { alert:'🚨 Alertes & Points de vigilance', pos:'✅ Points positifs de votre santé',
+              nutri:'🥗 Conseils nutritionnels personnalisés', act:'🏃 Activité physique recommandée',
+              mental:'💆 Bien-être mental & émotionnel', med:'🩺 Surveillance médicale conseillée',
+              week:'📅 Conseils pour votre semaine de grossesse', global:'📋 Évaluation globale',
+              urgent:'🚨 Consultation médicale urgente recommandée' },
+        en: { alert:'🚨 Alerts & Points of attention', pos:'✅ Positive health points',
+              nutri:'🥗 Personalised nutrition advice', act:'🏃 Recommended physical activity',
+              mental:'💆 Mental & emotional well-being', med:'🩺 Recommended medical monitoring',
+              week:'📅 Tips for your gestational week', global:'📋 Global assessment',
+              urgent:'🚨 Urgent medical consultation recommended' },
+        ar: { alert:'🚨 تنبيهات ونقاط مراقبة', pos:'✅ نقاط صحية إيجابية',
+              nutri:'🥗 نصائح غذائية شخصية', act:'🏃 النشاط البدني الموصى به',
+              mental:'💆 الصحة النفسية والعاطفية', med:'🩺 المتابعة الطبية المنصوح بها',
+              week:'📅 نصائح لأسبوع حملكِ', global:'📋 التقييم العام',
+              urgent:'🚨 يُوصى باستشارة طبية عاجلة' }
+    };
+    const l = labels[lang] || labels.fr;
+    let html = '';
+
+    // Urgent alert
+    if (parsed.urgentConsult) {
+        html += `<div class="analysis-block priority"><h3>${l.urgent}</h3><p>${parsed.urgentReason || ''}</p></div>`;
+    }
+
+    // Global
+    if (parsed.globalStatus) {
+        html += `<div class="analysis-block"><h3>${l.global}</h3><p>${parsed.globalStatus}</p></div>`;
+    }
+
+    // Alerts
+    if (parsed.alerts && parsed.alerts.length) {
+        html += `<div class="analysis-block warning"><h3>${l.alert}</h3><ul>${parsed.alerts.map(a=>`<li>${a}</li>`).join('')}</ul></div>`;
+    }
+
+    // Positives
+    if (parsed.positives && parsed.positives.length) {
+        html += `<div class="analysis-block good"><h3>${l.pos}</h3><ul>${parsed.positives.map(a=>`<li>${a}</li>`).join('')}</ul></div>`;
+    }
+
+    // Nutrition
+    if (parsed.nutritionAdvice && parsed.nutritionAdvice.length) {
+        html += `<div class="analysis-block"><h3>${l.nutri}</h3><div class="advice-list">${parsed.nutritionAdvice.map(a=>`<div class="advice-item">${a}</div>`).join('')}</div></div>`;
+    }
+
+    // Activity
+    if (parsed.activityAdvice && parsed.activityAdvice.length) {
+        html += `<div class="analysis-block"><h3>${l.act}</h3><div class="advice-list">${parsed.activityAdvice.map(a=>`<div class="advice-item">${a}</div>`).join('')}</div></div>`;
+    }
+
+    // Mental health
+    if (parsed.mentalHealth && parsed.mentalHealth.length) {
+        html += `<div class="analysis-block"><h3>${l.mental}</h3><div class="advice-list">${parsed.mentalHealth.map(a=>`<div class="advice-item">${a}</div>`).join('')}</div></div>`;
+    }
+
+    // Medical watch
+    if (parsed.medicalWatch && parsed.medicalWatch.length) {
+        html += `<div class="analysis-block warning"><h3>${l.med}</h3><ul>${parsed.medicalWatch.map(a=>`<li>${a}</li>`).join('')}</ul></div>`;
+    }
+
+    // Weekly tips
+    if (parsed.weeklyTips && parsed.weeklyTips.length) {
+        html += `<div class="analysis-block good"><h3>${l.week}</h3><div class="advice-list">${parsed.weeklyTips.map(a=>`<div class="advice-item">${a}</div>`).join('')}</div></div>`;
+    }
+
+    document.getElementById('analysisSection').innerHTML = html;
+}
+
+/* ============================================================
+   MAIN ANALYZE FUNCTION
+   ============================================================ */
+async function analyzeForm() {
+    const data = collectData();
+
+    // Validate minimum fields
+    if (!data.age || !data.weeks || !data.weight || !data.height) {
+        const errEl = document.getElementById('errorMsg');
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior:'smooth', block:'center' });
+        return;
+    }
+    document.getElementById('errorMsg').style.display = 'none';
+
+    // Show loading
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.classList.add('show');
+    document.getElementById('submitBtn').disabled = true;
+
+    try {
+        // Build stat cards immediately (no API needed)
+        buildStats(data, currentLang);
+
+        // Call Claude API
+        const prompt = buildPrompt(data, currentLang);
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                model: "claude-sonnet-4-20250514",
+                max_tokens: 1500,
+                messages: [{ role: "user", content: prompt }]
+            })
+        });
+
+        const apiData = await response.json();
+        const rawText = apiData.content.map(c => c.text || '').join('');
+
+        // Parse JSON — strip any accidental markdown fences
+        let parsed;
+        try {
+            const cleaned = rawText.replace(/```json|```/g, '').trim();
+            parsed = JSON.parse(cleaned);
+        } catch(e) {
+            // Fallback: extract JSON from text
+            const match = rawText.match(/\{[\s\S]*\}/);
+            parsed = match ? JSON.parse(match[0]) : {};
+        }
+
+        // Render results
+        renderAIResults(parsed, currentLang);
+
+        // Show results section
+        overlay.classList.remove('show');
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('resultsSection').style.display = 'block';
+        document.getElementById('resultsSection').scrollIntoView({ behavior:'smooth' });
+
+    } catch(err) {
+        console.error('Analysis error:', err);
+        overlay.classList.remove('show');
+        // Fallback: show stats only
+        document.getElementById('analysisSection').innerHTML = `<div class="analysis-block warning"><h3>ℹ️ Analyse partielle</h3><p>L'analyse IA n'est pas disponible pour le moment. Vos indicateurs de santé calculés sont affichés ci-dessus.</p></div>`;
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('resultsSection').style.display = 'block';
+        document.getElementById('resultsSection').scrollIntoView({ behavior:'smooth' });
+    } finally {
+        document.getElementById('submitBtn').disabled = false;
+    }
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+function resetForm() {
+    document.getElementById('resultsSection').style.display = 'none';
+    document.getElementById('formCard').style.display = 'block';
+    document.getElementById('statsGrid').innerHTML = '';
+    document.getElementById('analysisSection').innerHTML = '';
+    window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener('load', () => {
+    changeLang(currentLang);
+});
+</script>
+</body>
+</html>

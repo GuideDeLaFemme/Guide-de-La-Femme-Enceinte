@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#f7a8c4">
+    <title data-i18n="pageTitle">Guide de la Femme Enceinte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        <h1 data-i18n="header">💗 Guide de la Femme Enceinte 💗</h1>
+    </header>
+    
+
+    <div class="side-menu" id="sideMenu" role="dialog" aria-modal="true">
+        <div class="menu-header">
+            <h2 data-i18n="sideSettings">Paramètres</h2>
+            <span onclick="toggleMenu()" role="button" style="cursor:pointer;font-size:20px;padding:5px;">✕</span>
+        </div>
+        <ul id="ul-bil"><li class="nav-bilan-btn" onclick="window.location.href='bilan.html'" data-i18n="navBilan">📋 Bilan Santé</li></ul>
+        <div class="menu-section">
+            <h3 data-i18n="sideMode">Affichage</h3>
+            <button onclick="toggleDarkMode()" data-i18n="sideDark">🌙 Mode sombre</button>
+        </div>
+
+        <div class="menu-section">
+            <h3 data-i18n="sideLang">Langue</h3>
+            <select id="langSelect" onchange="changeLang(this.value)">
+                <option value="fr">🇫🇷 Français</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="ar">🇹🇳 العربية</option>
+            </select>
+        </div>
+
+        <div class="menu-section">
+            <h3 data-i18n="sideAbout">À propos</h3>
+            <p class="about-text" data-i18n="aboutText">Ce guide a été développé par une équipe de professionnelles de santé tunisiennes dédiées au bien-être de la femme enceinte.</p>
+        </div>
+
+        <div class="menu-section">
+            <h3 data-i18n="sideContact">Notre équipe</h3>
+            <div class="contact-card">
+                <h4>👩‍⚕️ Rayen Azouzi</h4>
+                <p>📧 azaouzirayen21@gmail.com</p>
+                <p>📞 +216 93 702 569</p>
+                <p>📍 <span data-i18n="cityTunis">Tunis</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+            </div>
+            <div class="contact-card">
+                <h4>👩‍⚕️ Oumayma Bel Haj</h4>
+                <p>📧 oumaimabelhaj831@gmail.com</p>
+                <p>📞 +216 22 462 779</p>
+                <p>📍 <span data-i18n="citySousse">Sousse</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+            </div>
+            <div class="contact-card">
+                <h4>👩‍⚕️ Manel Maati</h4>
+                <p>📧 manel@gmail.com</p>
+                <p>📞 +216 26 287 662</p>
+                <p>📍 <span data-i18n="citySfax">Sfax</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+            </div>
+            <div class="contact-card">
+                <h4>👩‍⚕️ Israa Louhichi</h4>
+                <p>📧 israa@gmail.com</p>
+                <p>📞 +216 95 185 274</p>
+                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+            </div>
+            <div class="contact-card">
+                <h4>👩‍⚕️ Mariem Aridhi</h4>
+                <p>📧 mariem@gmail.com</p>
+                <p>📞 +216 20 555 273</p>
+                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="about-text" style="font-size:11px;color:#888;" data-i18n="disclaimer">⚠️ Ce guide est à titre informatif. Consultez toujours votre médecin ou sage-femme pour un suivi personnalisé.</p>
+        </div>
+    </div>
+
+    <nav role="navigation">
+        <ul>
+            <li class="active" data-section="accueil" data-i18n="navHome">🏠 Accueil</li>
+            <li data-section="travail" data-i18n="navWork">💪 Travail</li>
+            <li data-section="respiration" data-i18n="navBreathing">🌬️ Respiration</li>
+            <li data-section="mouvement" data-i18n="navPostures">🤱 Postures</li>
+
+        </ul>
+    </nav>
+
+    <main>
+
+        <div class="left" aria-hidden="true">
+            <img src="mere.png" alt="">
+        </div>
+
+        <div class="slider-container">
+
+            <!-- ═══════ ACCUEIL ═══════ -->
+            <div class="slider-section active" id="accueil">
+                <div class="slider">
+
+                    <div class="slide active">
+                        <div class="slide-inner welcome-slide">
+                            <div class="welcome-badge" data-i18n="welcomeBadge">Guide Officiel</div>
+                            <h2 class="welcome-title" data-i18n="slide_accueil_0_title">Bienvenue, Future Maman 💗</h2>
+                            <p class="welcome-subtitle" data-i18n="slide_accueil_0_sub">Votre compagnon de grossesse — du premier trimestre jusqu'à l'accouchement</p>
+                            <p class="welcome-body" data-i18n="slide_accueil_0_body">Ce guide complet a été conçu par une équipe de professionnelles de santé tunisiennes pour vous accompagner à chaque étape de votre grossesse. Vous y trouverez des conseils pratiques sur la nutrition, les postures adaptées, les techniques de respiration et les exercices doux.</p>
+                            <div class="welcome-features">
+                                <div class="feature-chip" data-i18n="feat1">🤰 Postures</div>
+                                <div class="feature-chip" data-i18n="feat2">🌬️ Respiration</div>
+                                <div class="feature-chip" data-i18n="feat3">💪 Exercices</div>
+                                <div class="feature-chip" data-i18n="feat4">💡 Conseils</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_accueil_1_title">📖 Comment utiliser ce guide ?</h2>
+                            <p data-i18n="slide_accueil_1_body">Ce guide est organisé en quatre sections accessibles depuis le menu de navigation. Chaque section propose des fiches pratiques illustrées avec des informations médicales vérifiées.</p>
+                            <div class="info-cards">
+                                <div class="info-card">
+                                    <span class="info-icon">🏠</span>
+                                    <strong data-i18n="navHome">Accueil</strong>
+                                    <p data-i18n="infoCardHome">Introduction &amp; bien-être général</p>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-icon">💪</span>
+                                    <strong data-i18n="navWork">Travail</strong>
+                                    <p data-i18n="infoCardWork">Exercices doux &amp; gestion de l'énergie</p>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-icon">🌬️</span>
+                                    <strong data-i18n="navBreathing">Respiration</strong>
+                                    <p data-i18n="infoCardBreath">Techniques de détente &amp; préparation</p>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-icon">🤱</span>
+                                    <strong data-i18n="navPostures">Postures</strong>
+                                    <p data-i18n="infoCardPost">Soulager le dos &amp; préparer l'accouchement</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_accueil_2_title">🌱 Votre corps pendant la grossesse</h2>
+                            <p data-i18n="slide_accueil_2_body">Pendant la grossesse, votre corps vit une transformation physiologique exceptionnelle. Comprendre ces changements vous permet de mieux les appréhender et d'adopter les bons réflexes.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="bodyPoint1">🔸 <strong>1er trimestre :</strong> Fatigue intense, nausées, adaptation hormonale</li>
+                                <li data-i18n="bodyPoint2">🔸 <strong>2e trimestre :</strong> Retour d'énergie, croissance du ventre, premiers mouvements</li>
+                                <li data-i18n="bodyPoint3">🔸 <strong>3e trimestre :</strong> Préparation à l'accouchement, gestion du poids et de la posture</li>
+                                <li data-i18n="bodyPoint4">🔸 <strong>En continu :</strong> Hydrater, se reposer, consulter votre équipe soignante régulièrement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_accueil_3_title">🥗 Nutrition &amp; Bien-être</h2>
+                            <p data-i18n="slide_accueil_3_body">Une alimentation équilibrée est le pilier d'une grossesse saine. Privilégiez des apports riches en acide folique, fer, calcium et oméga-3, essentiels au développement optimal de votre bébé.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="nutri1">🥦 Légumes verts, légumineuses et fruits frais chaque jour</li>
+                                <li data-i18n="nutri2">🐟 Poissons gras (sardines, saumon) 2 fois par semaine</li>
+                                <li data-i18n="nutri3">🥛 Produits laitiers pour le calcium</li>
+                                <li data-i18n="nutri4">💊 Suppléments de fer et acide folique sur prescription</li>
+                                <li data-i18n="nutri5">💧 Au moins 1,5 à 2 litres d'eau par jour</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_accueil_4_title">💆‍♀️ Santé mentale &amp; Soutien émotionnel</h2>
+                            <p data-i18n="slide_accueil_4_body">Votre bien-être émotionnel est tout aussi important que votre santé physique. La grossesse peut s'accompagner de doutes, d'angoisses ou de bouleversements affectifs — c'est tout à fait normal.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="mental1">💬 Parlez de vos émotions à votre entourage ou à un professionnel</li>
+                                <li data-i18n="mental2">🧘 Pratiquez la méditation et la relaxation guidée</li>
+                                <li data-i18n="mental3">📖 Tenez un journal de grossesse pour exprimer vos ressentis</li>
+                                <li data-i18n="mental4">🤝 Rejoignez des groupes de soutien pour futures mamans</li>
+                                <li data-i18n="mental5">🌙 Accordez-vous des moments de repos et de plaisir chaque jour</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="prev-accueil" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-accueil">1 / 5</span>
+                        <button id="next-accueil" data-i18n="btnNext">Suivant ▶</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════ TRAVAIL ═══════ -->
+            <div class="slider-section" id="travail">
+                <div class="slider">
+
+                    <div class="slide active">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_travail_0_title">💪 Rester active pendant la grossesse</h2>
+                            <p data-i18n="slide_travail_0_body">L'activité physique modérée est recommandée tout au long d'une grossesse sans complications. Elle améliore la circulation sanguine, réduit les douleurs dorsales, favorise un meilleur sommeil et prépare votre corps à l'accouchement.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="work1">🚶 Marche quotidienne de 30 minutes à un rythme modéré</li>
+                                <li data-i18n="work2">🏊 Aquagym ou natation douce, idéale pour décharger le poids</li>
+                                <li data-i18n="work3">🧘 Yoga prénatal et étirements adaptés</li>
+                                <li data-i18n="work4">🚴 Vélo stationnaire en début de grossesse</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_travail_1_title">😴 Gérer la fatigue au quotidien</h2>
+                            <p data-i18n="slide_travail_1_body">La fatigue est l'un des symptômes les plus fréquents de la grossesse, particulièrement aux 1er et 3e trimestres. Elle résulte des transformations hormonales et de l'augmentation du volume sanguin.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="fatigue1">🛌 Accordez-vous des siestes courtes (20-30 min) en journée</li>
+                                <li data-i18n="fatigue2">📅 Planifiez vos activités importantes en matinée</li>
+                                <li data-i18n="fatigue3">🙋 N'hésitez pas à déléguer et à accepter de l'aide</li>
+                                <li data-i18n="fatigue4">🥗 Évitez les repas lourds qui accentuent la somnolence</li>
+                                <li data-i18n="fatigue5">🌙 Maintenez un rythme de sommeil régulier</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_travail_2_title">⚠️ Exercices à éviter</h2>
+                            <p data-i18n="slide_travail_2_body">Certains exercices sont contre-indiqués durant la grossesse. Consultez toujours votre médecin avant de commencer un programme sportif.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="avoid1">🚫 Sports de contact ou à risque de chutes</li>
+                                <li data-i18n="avoid2">🚫 Exercices en décubitus dorsal après le 1er trimestre</li>
+                                <li data-i18n="avoid3">🚫 Efforts intenses en altitude ou en chaleur excessive</li>
+                                <li data-i18n="avoid4">🚫 Musculation avec charges lourdes</li>
+                                <li data-i18n="avoid5">✅ En cas de doute : marche, natation et yoga restent les meilleures options</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="prev-travail" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-travail">1 / 3</span>
+                        <button id="next-travail" data-i18n="btnNext">Suivant ▶</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════ RESPIRATION ═══════ -->
+            <div class="slider-section" id="respiration">
+                <div class="slider">
+
+                    <div class="slide active">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_resp_0_title">🌬️ Pourquoi bien respirer ?</h2>
+                            <p data-i18n="slide_resp_0_body">La respiration consciente est un outil fondamental pendant la grossesse et l'accouchement. Elle permet d'oxygéner efficacement le sang, de réduire le stress et de gérer la douleur lors des contractions.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="breath1">💓 Améliore l'oxygénation du fœtus</li>
+                                <li data-i18n="breath2">🧠 Réduit l'anxiété et régule le système nerveux</li>
+                                <li data-i18n="breath3">💪 Renforce le diaphragme et le plancher pelvien</li>
+                                <li data-i18n="breath4">😌 Favorise la détente profonde et un meilleur sommeil</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_resp_1_title">🫁 Respiration abdominale profonde</h2>
+                            <p data-i18n="slide_resp_1_body">La technique de base recommandée pendant la grossesse. Elle mobilise pleinement le diaphragme et optimise les échanges gazeux.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="abdo1">1️⃣ Installez-vous confortablement, une main sur le ventre</li>
+                                <li data-i18n="abdo2">2️⃣ Inspirez lentement par le nez en 4 secondes — ventre qui se soulève</li>
+                                <li data-i18n="abdo3">3️⃣ Retenez votre souffle 1 à 2 secondes</li>
+                                <li data-i18n="abdo4">4️⃣ Expirez doucement par la bouche en 6 secondes</li>
+                                <li data-i18n="abdo5">🔁 Répétez 5 à 10 fois, 2 à 3 fois par jour</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_resp_2_title">🌊 Respiration pour l'accouchement</h2>
+                            <p data-i18n="slide_resp_2_body">Maîtriser sa respiration est l'une des clés d'un accouchement plus serein. Ces techniques permettent de gérer les contractions et de conserver son énergie.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="birth1">🔵 <strong data-i18n="birthPhase1">Phase de dilatation :</strong> <span data-i18n="birthPhase1Text">Respirations lentes et profondes entre les contractions</span></li>
+                                <li data-i18n="birth2">🟡 <strong data-i18n="birthPhase2">Pendant la contraction :</strong> <span data-i18n="birthPhase2Text">Expiration longue et contrôlée — ne bloquez pas votre souffle</span></li>
+                                <li data-i18n="birth3">🟢 <strong data-i18n="birthPhase3">Phase d'expulsion :</strong> <span data-i18n="birthPhase3Text">Poussées guidées par votre sage-femme, coordonnées à votre souffle</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="prev-respiration" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-respiration">1 / 3</span>
+                        <button id="next-respiration" data-i18n="btnNext">Suivant ▶</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════ POSTURES ═══════ -->
+            <div class="slider-section" id="mouvement">
+                <div class="slider">
+
+                    <div class="slide active">
+                        <div class="slide-inner welcome-slide">
+                            <div class="welcome-badge" data-i18n="posturesBadge">Kinésithérapie prénatale</div>
+                            <h2 class="welcome-title" data-i18n="slide_pos_0_title">🤱 Chère future maman</h2>
+                            <p class="welcome-body" data-i18n="slide_pos_0_body">Ton corps vit une transformation extraordinaire. Avec la croissance de ton ventre, ta posture change et certaines tensions apparaissent au niveau du dos, du bassin ou des jambes.</p>
+                            <p class="welcome-body" style="margin-top:10px;" data-i18n="slide_pos_0_body2">Les postures présentées ci-après ont été sélectionnées par notre équipe de kinésithérapeutes prénatales pour t'aider à soulager les douleurs, favoriser la mobilité du bassin et préparer ton corps à l'accouchement.</p>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_pos_1_title">🌿 Décubitus Latéral Gauche (DLG)</h2>
+                            <p data-i18n="slide_pos_1_desc">Position allongée sur le côté gauche, coussins de soutien sous le ventre et entre les genoux.</p>
+                            <div class="img-box">
+                                <img src="Décubitus Latéral Gauche.jpeg" alt="Décubitus latéral gauche">
+                                <div class="benefits-block">
+                                    <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
+                                    <ul>
+                                        <li data-i18n="dlg1">✔️ Optimise la circulation utéro-placentaire</li>
+                                        <li data-i18n="dlg2">✔️ Favorise l'oxygénation du fœtus</li>
+                                        <li data-i18n="dlg3">✔️ Réduit les œdèmes des membres inférieurs</li>
+                                        <li data-i18n="dlg4">✔️ Soulage les lombalgies chroniques</li>
+                                        <li data-i18n="dlg5">✔️ Induit une relaxation profonde</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_pos_2_title">🌿 Position accroupie</h2>
+                            <p data-i18n="slide_pos_2_desc">Flexion des genoux avec descente progressive du bassin, dos droit, pieds à plat.</p>
+                            <div class="img-box">
+                                <img src="Position accroupie.jpeg" alt="Position accroupie">
+                                <div class="benefits-block">
+                                    <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
+                                    <ul>
+                                        <li data-i18n="squat1">✔️ Renforce les muscles des membres inférieurs</li>
+                                        <li data-i18n="squat2">✔️ Assouplit le périnée et le plancher pelvien</li>
+                                        <li data-i18n="squat3">✔️ Augmente la mobilité et l'ouverture du bassin</li>
+                                        <li data-i18n="squat4">✔️ Améliore la circulation sanguine</li>
+                                        <li data-i18n="squat5">✔️ Prépare activement à l'expulsion</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_pos_3_title">🌿 Position à quatre pattes</h2>
+                            <p data-i18n="slide_pos_3_desc">Appui symétrique sur les mains et les genoux, rachis neutre, regard vers le sol.</p>
+                            <div class="img-box">
+                                <img src="Position à quatre pattes.jpeg" alt="Position à quatre pattes">
+                                <div class="benefits-block">
+                                    <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
+                                    <ul>
+                                        <li data-i18n="qp1">✔️ Soulage efficacement les lombalgies</li>
+                                        <li data-i18n="qp2">✔️ Décharge la pression sur le bassin</li>
+                                        <li data-i18n="qp3">✔️ Améliore la mobilité pelvienne</li>
+                                        <li data-i18n="qp4">✔️ Encourage la bonne présentation du bébé</li>
+                                        <li data-i18n="qp5">✔️ Diminue les douleurs sciatiques</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_pos_4_title">🌿 Posture de suspension</h2>
+                            <p data-i18n="slide_pos_4_desc">Debout, légère inclinaison vers l'avant avec appui sur un support stable (mur, barre, rebozo).</p>
+                            <div class="img-box">
+                                <img src="Posture de suspension.jpeg" alt="Posture de suspension">
+                                <div class="benefits-block">
+                                    <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
+                                    <ul>
+                                        <li data-i18n="sus1">✔️ Diminue la compression lombaire</li>
+                                        <li data-i18n="sus2">✔️ Décharge le poids du bassin</li>
+                                        <li data-i18n="sus3">✔️ Détend et assouplit le périnée</li>
+                                        <li data-i18n="sus4">✔️ Favorise la descente du bébé</li>
+                                        <li data-i18n="sus5">✔️ Procure une sensation de légèreté</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="prev-mouvement" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-mouvement">1 / 5</span>
+                        <button id="next-mouvement" data-i18n="btnNext">Suivant ▶</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right">
+            <div class="card">
+                <video src="Octobre rose animations.mp4" autoplay loop muted playsinline></video>
+                <h3 data-i18n="cardTitle">💗 Octobre Rose</h3>
+                <p data-i18n="cardContent">Sensibilisation au dépistage du cancer du sein — parce que chaque femme mérite d'être protégée.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <span data-i18n="footer">💗 Tous droits réservés — Raed Azouzi | insta: @raed__az</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

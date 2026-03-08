@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Bienvenue Future Maman</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    height:100dvh;
+}
+
+/* VIDEO BACKGROUND */
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-3;
+}
+
+.bg video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:110%;
+    height:110%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+    filter:blur(8px) brightness(0.6);
+}
+
+.bg::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,#ff9acb,#c084fc,#ffb6c1,#a78bfa);
+    background-size:300% 300%;
+    animation:gradientMove 12s ease infinite;
+    mix-blend-mode:overlay;
+    opacity:0.6;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* FLOATING ORBS */
+.orb{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.5;
+    animation:floatOrb 12s ease-in-out infinite alternate;
+    pointer-events:none;
+}
+.orb1{width:clamp(150px,30vw,300px);height:clamp(150px,30vw,300px);background:#ff9acb;top:10%;left:5%;}
+.orb2{width:clamp(120px,25vw,250px);height:clamp(120px,25vw,250px);background:#c084fc;bottom:10%;right:10%;}
+.orb3{width:clamp(100px,20vw,200px);height:clamp(100px,20vw,200px);background:#ffb6c1;top:40%;right:20%;}
+
+@keyframes floatOrb{
+    from{transform:translateY(-20px);}
+    to{transform:translateY(20px);}
+}
+
+/* GLASS CONTAINER */
+.container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:min(90%, 800px);
+    max-height:90vh;
+    max-height:90dvh;
+    padding:clamp(25px,5vw,60px) clamp(20px,4vw,40px);
+    border-radius:30px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 0 60px rgba(255,255,255,0.2);
+    text-align:center;
+    animation:fadeUp 1.5s ease;
+    overflow:auto;
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translate(-50%,-40%);}
+    to{opacity:1; transform:translate(-50%,-50%);}
+}
+
+/* IMAGE */
+.container img{
+    width:clamp(100px,20vw,180px);
+    border-radius:50%;
+    margin-bottom:clamp(15px,3vw,25px);
+    animation:floatImg 6s ease-in-out infinite;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+@keyframes floatImg{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+/* TEXT */
+.container h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.5em,5vw,2.8em);
+    font-weight:700;
+    background:linear-gradient(45deg,#ff9acb,#c084fc);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:clamp(8px,2vw,15px);
+    line-height:1.2;
+}
+
+.container h2{
+    font-weight:400;
+    color:#fff;
+    margin-bottom:clamp(10px,2vw,20px);
+    font-size:clamp(0.9em,2.5vw,1.2em);
+}
+
+.container p{
+    color:#f5f5f5;
+    line-height:1.7;
+    margin-bottom:clamp(20px,4vw,40px);
+    font-size:clamp(0.85em,2vw,1em);
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* BUTTON */
+.start-btn{
+    padding:clamp(12px,2.5vw,18px) clamp(30px,6vw,55px);
+    font-size:clamp(1em,2.5vw,1.3em);
+    font-weight:600;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    background:linear-gradient(45deg,#ff9acb,#c084fc);
+    color:white;
+    position:relative;
+    overflow:hidden;
+    transition:0.4s;
+    font-family:'Poppins',sans-serif;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.start-btn:hover,.start-btn:focus{
+    transform:scale(1.08);
+    box-shadow:0 0 25px #ff9acb;
+    outline:none;
+}
+
+.start-btn:active{
+    transform:scale(0.98);
+}
+
+.start-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-75%;
+    width:50%;
+    height:100%;
+    background:rgba(255,255,255,0.4);
+    transform:skewX(-20deg);
+    transition:0.5s;
+}
+
+.start-btn:hover::before{
+    left:130%;
+}
+
+/* PARTICLES */
+.particle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:white;
+    pointer-events:none;
+    animation:fade 2s linear forwards;
+    z-index:999;
+}
+
+@keyframes fade{
+    to{opacity:0; transform:scale(0);}
+}
+
+/* TOUCH RIPPLE for mobile */
+@media (hover:none) and (pointer:coarse) {
+    .start-btn::before{display:none;}
+    .particle{display:none;}
+}
+
+/* SMALL PHONES */
+@media(max-height:600px){
+    .container{
+        top:5%;
+        transform:translate(-50%,0);
+        max-height:90vh;
+    }
+    .container img{width:80px;margin-bottom:10px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+    <video autoplay muted loop playsinline>
+        <source src="Octobre_rose_animations.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+    <img src="enceinte.png" alt="Femme enceinte">
+    <h1>Bienvenue, Future Maman</h1>
+    <h2>Votre parcours commence ici</h2>
+    <p>
+        Découvrez des conseils, astuces et outils pour accompagner votre grossesse
+        dans un environnement sûr, moderne et bienveillant.
+    </p>
+    <button class="start-btn" onclick="goToMain()">Commencer ✨</button>
+</div>
+
+<script>
+function goToMain(){
+    window.location.href = 'main.html';
+}
+
+// Only show particles on non-touch devices
+const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+if (!isTouch) {
+    function createParticle(x,y){
+        const p=document.createElement('div');
+        p.className='particle';
+        p.style.left=x+'px';
+        p.style.top=y+'px';
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),2000);
+    }
+    document.addEventListener('mousemove',e=>{
+        if(Math.random() > 0.7) createParticle(e.clientX,e.clientY);
+    });
+}
+</script>
+</body>
+</html>
