@@ -159,6 +159,7 @@ main {
     line-height: 1.75;
     color: #3a003a;
     margin-bottom: 12px;
+
 }
 
 /* =============================================
@@ -194,7 +195,7 @@ main {
 }
 
 .welcome-body {
-    font-size: clamp(12px,1.6vw,14px) !important;
+    font-size: clamp(12px,1.6vw,25px) !important;
     line-height: 1.7 !important;
     color: #4a003a !important;
 }
@@ -469,13 +470,21 @@ body.dark .contact-card h4 { color: #ffb3d9; }
 body.dark .contact-card p, body.dark .about-text { color: #bbb; }
 body.dark .menu-btn { color: #ffb3d9; }
 body.dark footer span { color: #ffb3d9; }
+body.dark audio{filter: invert(100%);}
 
+.slider p{font-size: 25px;}
 /* =============================================
    RESPONSIVE — TABLET
    ============================================= */
 @media (max-width: 1100px) {
     .left img { width: clamp(80px,9vw,160px); }
     .card { width: clamp(150px,14vw,210px); }
+    .welcome-body {
+    font-size: clamp(12px,1.6vw,14px) !important;
+    line-height: 1.7 !important;
+    color: #4a003a !important;
+}
+.slider p{font-size: 14px;}
 }
 
 @media (max-width: 920px) {
@@ -489,7 +498,14 @@ body.dark footer span { color: #ffb3d9; }
     .slider { min-height: clamp(340px,56vh,520px); }
     .right { width: 100%; justify-content: center; }
     .card { width: min(300px,100%); }
+    .welcome-body {
+    font-size: clamp(12px,1.6vw,14px) !important;
+    line-height: 1.7 !important;
+    color: #4a003a !important;
 }
+    .slider p{font-size: 14px;}
+}
+
 
 /* =============================================
    RESPONSIVE — MOBILE
@@ -513,6 +529,13 @@ body.dark footer span { color: #ffb3d9; }
 
     .card { width: min(260px,100%); }
     .right{display: none;}
+    .welcome-body {
+    font-size: clamp(12px,1.6vw,14px) !important;
+    line-height: 1.7 !important;
+    color: #4a003a !important;
+    
+}
+.slider p{font-size: 14px;}
 }
 
 @media (max-width: 400px) {
@@ -520,6 +543,13 @@ body.dark footer span { color: #ffb3d9; }
     nav li { font-size: 10.5px; padding: 5px 10px; }
     .info-cards { grid-template-columns: 1fr 1fr; }
     .right{display: none;}
+    .welcome-body {
+    font-size: clamp(12px,1.6vw,14px) !important;
+    line-height: 1.7 !important;
+    color: #4a003a !important;
+    
+}
+.slider p{font-size: 14px;}
 }
 
 /* =============================================
@@ -531,6 +561,12 @@ body.dark footer span { color: #ffb3d9; }
     main { padding: 8px; }
     .slider { min-height: 180px; }
     .right{display: none;}
+    .welcome-body {
+    font-size: clamp(12px,1.6vw,14px) !important;
+    line-height: 1.7 !important;
+    color: #4a003a !important;
+}
+.slider p{font-size: 14px;}
 }
 
 
@@ -571,3 +607,229 @@ select {
     background: linear-gradient(135deg, var(--crimson), #e0006a);
     box-shadow: 0 5px 18px rgba(176,0,92,0.45);
 }
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255,107,161,0.3); }
+    50% { box-shadow: 0 0 20px rgba(255,107,161,0.6); }
+}
+
+/* =============================================
+   ANIMATION CLASSES
+   ============================================= */
+.slide-fade-in {
+    animation: slideUp 0.6s ease-out;
+}
+
+.chip-bounce {
+    animation: bounce 2s infinite;
+}
+
+.chip-bounce:nth-child(1) { animation-delay: 0s; }
+.chip-bounce:nth-child(2) { animation-delay: 0.2s; }
+.chip-bounce:nth-child(3) { animation-delay: 0.4s; }
+.chip-bounce:nth-child(4) { animation-delay: 0.6s; }
+
+.card-slide-up {
+    animation: slideUp 0.5s ease-out backwards;
+}
+
+.message-card:nth-child(1) { animation-delay: 0s; }
+.message-card:nth-child(2) { animation-delay: 0.1s; }
+.message-card:nth-child(3) { animation-delay: 0.2s; }
+.message-card:nth-child(4) { animation-delay: 0.3s; }
+.message-card:nth-child(5) { animation-delay: 0.4s; }
+.message-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* =============================================
+   MESSAGES GRID STYLING
+   ============================================= */
+.messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(12px, 2vw, 20px);
+    margin-top: 20px;
+}
+
+.message-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.9));
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: var(--radius-sm);
+    padding: clamp(16px, 2.5vw, 20px);
+    box-shadow: 0 8px 20px rgba(176,0,92,0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(176,0,92,0.2);
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,1));
+}
+
+.message-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.message-card h3 {
+    font-size: clamp(13px, 1.8vw, 15px);
+    color: var(--crimson);
+    margin: 8px 0;
+    font-weight: 600;
+}
+
+.message-card p {
+    font-size: clamp(11px, 1.5vw, 13px);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* =============================================
+   CREDIT CARD STYLING
+   ============================================= */
+.credit-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-sm);
+    padding: clamp(12px, 2vw, 16px);
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(176, 0, 92, 0.08);
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+.credit-card h4 {
+    font-size: clamp(12px, 1.6vw, 14px);
+    color: var(--crimson);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.credit-card p {
+    font-size: clamp(10px, 1.4vw, 12px);
+    color: var(--text-dark);
+    margin: 3px 0;
+}
+
+.credit-card a {
+    color: var(--crimson);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.credit-card a:hover {
+    text-decoration: underline;
+    color: var(--pink-btn);
+}
+
+
+
+/* =============================================
+   FIXES: Scroll glitch prevention & responsiveness
+   ============================================= */
+
+/* Prevent body scroll when content changes */
+.slider-section { contain: layout style; }
+
+/* Better slide scroll containment */
+.slide { scroll-behavior: smooth; overscroll-behavior: contain; }
+
+/* Fix for content blocks overflow on small screens */
+.content-block, .section-intro, .phase-list, .tip-box, .warning-box {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Responsive video */
+video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
+}
+
+/* Better img-box on medium screens */
+@media (max-width: 768px) {
+    .img-box { flex-direction: column; align-items: center; }
+    .img-box img { width: 100% !important; max-width: 280px !important; max-height: 200px; object-fit: cover; }
+    .benefits-block { width: 100%; min-width: unset; }
+}
+
+/* Two-col responsive */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Ensure messages grid wraps cleanly on mobile */
+@media (max-width: 500px) {
+    .messages-grid { grid-template-columns: 1fr; }
+    #vd1{width: 100%;}
+    #vd2{width: 100%;margin-left:0px;}
+}
+
+/* Better welcome body font size */
+.welcome-body { font-size: clamp(12px, 1.7vw, 14.5px) !important; }
+
+/* Fix slider min height for very small phones */
+@media (max-width: 380px) {
+    .slider { min-height: 500px; }
+    .slide { padding: 12px; padding-bottom: 68px; }
+    #vd1{width: 100%;}
+    #vd2{width: 100%;margin-left:0px;}
+}
+
+/* Smooth nav transitions */
+nav li { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+
+/* Make section-intro and content-block dark-mode compatible */
+body.dark .section-intro { background: rgba(255,100,170,0.1); color: #e0cce0; border-left-color: #ff8fb1; }
+body.dark .content-block { background: rgba(255,255,255,0.05); border-color: rgba(255,150,200,0.1); }
+body.dark .content-block h3 { color: #ffb3d9; }
+body.dark .content-block p { color: #e0d0e0; }
+body.dark .phase-list li { background: rgba(255,255,255,0.06); color: #e0d0e0; border-left-color: #ff8fb1; }
+body.dark .tip-box { background: rgba(255,100,170,0.08); color: #e0cce0; border-color: rgba(255,100,170,0.2); }
+body.dark .warning-box { background: rgba(255,200,0,0.06); color: #e0c070; border-left-color: #c08000; }
+body.dark .method-tag { background: linear-gradient(135deg, #b0005c, #6a0050); }
+body.dark .resp-badge { background: rgba(255,100,170,0.15); color: #ff9acb; }

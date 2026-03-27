@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#f7a8c4">
     <title data-i18n="pageTitle">Guide de la Femme Enceinte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
@@ -16,19 +20,21 @@
         <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
         <h1 data-i18n="header">💗 Guide de la Femme Enceinte 💗</h1>
     </header>
-    
 
     <div class="side-menu" id="sideMenu" role="dialog" aria-modal="true">
         <div class="menu-header">
             <h2 data-i18n="sideSettings">Paramètres</h2>
             <span onclick="toggleMenu()" role="button" style="cursor:pointer;font-size:20px;padding:5px;">✕</span>
         </div>
-        <ul id="ul-bil"><li class="nav-bilan-btn" onclick="window.location.href='bilan.html'" data-i18n="navBilan">📋 Bilan Santé</li></ul>
+
+        <ul id="ul-bil">
+            <li class="nav-bilan-btn" onclick="window.location.href='bilan.html'" data-i18n="navBilan">📋 Bilan Santé
+            </li>
+        </ul>
         <div class="menu-section">
             <h3 data-i18n="sideMode">Affichage</h3>
             <button onclick="toggleDarkMode()" data-i18n="sideDark">🌙 Mode sombre</button>
         </div>
-
         <div class="menu-section">
             <h3 data-i18n="sideLang">Langue</h3>
             <select id="langSelect" onchange="changeLang(this.value)">
@@ -37,63 +43,67 @@
                 <option value="ar">🇹🇳 العربية</option>
             </select>
         </div>
-
         <div class="menu-section">
             <h3 data-i18n="sideAbout">À propos</h3>
-            <p class="about-text" data-i18n="aboutText">Ce guide a été développé par une équipe de professionnelles de santé tunisiennes dédiées au bien-être de la femme enceinte.</p>
+            <p class="about-text" data-i18n="aboutText">Ce guide a été développé par une équipe de professionnelles de
+                santé tunisiennes dédiées au bien-être de la femme enceinte.</p>
         </div>
-
         <div class="menu-section">
-            <h3 data-i18n="sideContact">Notre équipe</h3>
+            <h3 data-i18n="sideCredit">Crédits</h3>
+            <div class="credit-card">
+                <h4>👨‍💼 Raed Azouzi</h4>
+                <p>📞 +216 29 446 035</p>
+                <p>📱 <a href="https://instagram.com/raed__az" target="_blank">@raed__az</a></p>
+                <p data-i18n="creditRole">Développement & Design</p>
+            </div>
+        </div>
+        <div class="menu-section">
+            <h3 data-i18n="sideContact">Notre équipe médicale</h3>
             <div class="contact-card">
                 <h4>👩‍⚕️ Rayen Azouzi</h4>
-                <p>📧 azaouzirayen21@gmail.com</p>
                 <p>📞 +216 93 702 569</p>
                 <p>📍 <span data-i18n="cityTunis">Tunis</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
             </div>
             <div class="contact-card">
                 <h4>👩‍⚕️ Oumayma Bel Haj</h4>
-                <p>📧 oumaimabelhaj831@gmail.com</p>
                 <p>📞 +216 22 462 779</p>
                 <p>📍 <span data-i18n="citySousse">Sousse</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
             </div>
             <div class="contact-card">
                 <h4>👩‍⚕️ Manel Maati</h4>
-                <p>📧 manel@gmail.com</p>
                 <p>📞 +216 26 287 662</p>
                 <p>📍 <span data-i18n="citySfax">Sfax</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
             </div>
             <div class="contact-card">
                 <h4>👩‍⚕️ Israa Louhichi</h4>
-                <p>📧 israa@gmail.com</p>
                 <p>📞 +216 95 185 274</p>
-                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span>
+                </p>
             </div>
             <div class="contact-card">
                 <h4>👩‍⚕️ Mariem Aridhi</h4>
-                <p>📧 mariem@gmail.com</p>
                 <p>📞 +216 20 555 273</p>
-                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span></p>
+                <p>📍 <span data-i18n="cityMonastir">Monastir</span>, <span data-i18n="countryTunisia">Tunisie</span>
+                </p>
             </div>
         </div>
-
         <div class="menu-section">
-            <p class="about-text" style="font-size:11px;color:#888;" data-i18n="disclaimer">⚠️ Ce guide est à titre informatif. Consultez toujours votre médecin ou sage-femme pour un suivi personnalisé.</p>
+            <p class="about-text" style="font-size:11px;color:#888;" data-i18n="disclaimer">⚠️ Ce guide est à titre
+                informatif. Consultez toujours votre médecin ou sage-femme pour un suivi personnalisé.</p>
         </div>
     </div>
 
     <nav role="navigation">
         <ul>
-            <li class="active" data-section="accueil" data-i18n="navHome">🏠 Accueil</li>
-            <li data-section="travail" data-i18n="navWork">💪 Travail</li>
+            <li class="active" data-section="accueil" data-i18n="navHome">🏠</li>
+            <li data-section="accouchement" data-i18n="navBirth">👶 Accouchement</li>
             <li data-section="respiration" data-i18n="navBreathing">🌬️ Respiration</li>
-            <li data-section="mouvement" data-i18n="navPostures">🤱 Postures</li>
-
+            <li data-section="postures" data-i18n="navPostures">🤱 Postures</li>
+            <li data-section="alternatives" data-i18n="navAlternatives">✨ Alternatives</li>
         </ul>
     </nav>
 
     <main>
-
         <div class="left" aria-hidden="true">
             <img src="mere.png" alt="">
         </div>
@@ -103,68 +113,91 @@
             <!-- ═══════ ACCUEIL ═══════ -->
             <div class="slider-section active" id="accueil">
                 <div class="slider">
-
                     <div class="slide active">
                         <div class="slide-inner welcome-slide">
                             <div class="welcome-badge" data-i18n="welcomeBadge">Guide Officiel</div>
                             <h2 class="welcome-title" data-i18n="slide_accueil_0_title">Bienvenue, Future Maman 💗</h2>
-                            <p class="welcome-subtitle" data-i18n="slide_accueil_0_sub">Votre compagnon de grossesse — du premier trimestre jusqu'à l'accouchement</p>
-                            <p class="welcome-body" data-i18n="slide_accueil_0_body">Ce guide complet a été conçu par une équipe de professionnelles de santé tunisiennes pour vous accompagner à chaque étape de votre grossesse. Vous y trouverez des conseils pratiques sur la nutrition, les postures adaptées, les techniques de respiration et les exercices doux.</p>
+                            <p class="welcome-subtitle" data-i18n="slide_accueil_0_sub">Votre compagnon de grossesse —
+                                du premier trimestre jusqu'à l'accouchement</p>
+                            <p class="welcome-body" data-i18n="slide_accueil_0_body">Ce guide complet a été conçu par
+                                une équipe de professionnelles de santé tunisiennes pour vous accompagner à chaque étape
+                                de votre grossesse.</p>
                             <div class="welcome-features">
-                                <div class="feature-chip" data-i18n="feat1">🤰 Postures</div>
-                                <div class="feature-chip" data-i18n="feat2">🌬️ Respiration</div>
-                                <div class="feature-chip" data-i18n="feat3">💪 Exercices</div>
-                                <div class="feature-chip" data-i18n="feat4">💡 Conseils</div>
+                                <div class="feature-chip chip-bounce" data-i18n="feat1">🤰 Postures</div>
+                                <div class="feature-chip chip-bounce" data-i18n="feat2">🌬️ Respiration</div>
+                                <div class="feature-chip chip-bounce" data-i18n="feat3">👶 Accouchement</div>
+                                <div class="feature-chip chip-bounce" data-i18n="feat4">✨ Alternatives</div>
                             </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_accueil_1_title">📖 Comment utiliser ce guide ?</h2>
-                            <p data-i18n="slide_accueil_1_body">Ce guide est organisé en quatre sections accessibles depuis le menu de navigation. Chaque section propose des fiches pratiques illustrées avec des informations médicales vérifiées.</p>
-                            <div class="info-cards">
-                                <div class="info-card">
-                                    <span class="info-icon">🏠</span>
-                                    <strong data-i18n="navHome">Accueil</strong>
-                                    <p data-i18n="infoCardHome">Introduction &amp; bien-être général</p>
+                            <h2 data-i18n="slide_accueil_1_title">🌸 Messages Essentiels</h2>
+                            <div class="messages-grid">
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">🌸</div>
+                                    <h3 data-i18n="msg_title_1">Ton corps est fait pour accoucher</h3>
+                                    <p data-i18n="msg_body_1">L'accouchement est un processus naturel. Le corps produit
+                                        des hormones qui aident les contractions et diminuent la douleur. Fais confiance
+                                        à ton corps.</p>
                                 </div>
-                                <div class="info-card">
-                                    <span class="info-icon">💪</span>
-                                    <strong data-i18n="navWork">Travail</strong>
-                                    <p data-i18n="infoCardWork">Exercices doux &amp; gestion de l'énergie</p>
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">🌸</div>
+                                    <h3 data-i18n="msg_title_2">La douleur a un rôle</h3>
+                                    <p data-i18n="msg_body_2">La douleur pendant le travail est normale. Chaque
+                                        contraction aide le col à s'ouvrir et le bébé à descendre. Cela permet à la
+                                        maman de se reposer entre les contractions.</p>
                                 </div>
-                                <div class="info-card">
-                                    <span class="info-icon">🌬️</span>
-                                    <strong data-i18n="navBreathing">Respiration</strong>
-                                    <p data-i18n="infoCardBreath">Techniques de détente &amp; préparation</p>
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">🌸</div>
+                                    <h3 data-i18n="msg_title_3">La respiration aide beaucoup</h3>
+                                    <p data-i18n="msg_body_3">Respirer calmement et profondément diminue le stress, aide
+                                        à supporter la douleur et améliore l'oxygène pour la maman et le bébé.</p>
                                 </div>
-                                <div class="info-card">
-                                    <span class="info-icon">🤱</span>
-                                    <strong data-i18n="navPostures">Postures</strong>
-                                    <p data-i18n="infoCardPost">Soulager le dos &amp; préparer l'accouchement</p>
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">🌸</div>
+                                    <h3 data-i18n="msg_title_4">Rester calme aide le travail</h3>
+                                    <p data-i18n="msg_body_4">Le stress peut ralentir les contractions. Un environnement
+                                        calme et rassurant aide le corps à mieux travailler. Se sentir soutenue est très
+                                        important.</p>
+                                </div>
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">🌸</div>
+                                    <h3 data-i18n="msg_title_5">Chaque accouchement est différent</h3>
+                                    <p data-i18n="msg_body_5">Chaque femme est unique. Chaque bébé est différent.
+                                        L'important est d'être informée, soutenue et confiante.</p>
+                                </div>
+                                <div class="message-card card-slide-up">
+                                    <div class="message-icon">💪</div>
+                                    <h3 data-i18n="msg_title_6">Femme bien informée</h3>
+                                    <p data-i18n="msg_body_6">Une femme bien informée a moins peur, se sent plus forte
+                                        et vit une expérience plus positive.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
                             <h2 data-i18n="slide_accueil_2_title">🌱 Votre corps pendant la grossesse</h2>
-                            <p data-i18n="slide_accueil_2_body">Pendant la grossesse, votre corps vit une transformation physiologique exceptionnelle. Comprendre ces changements vous permet de mieux les appréhender et d'adopter les bons réflexes.</p>
+                            <p data-i18n="slide_accueil_2_body">Pendant la grossesse, votre corps vit une transformation
+                                physiologique exceptionnelle.</p>
                             <ul class="styled-list">
-                                <li data-i18n="bodyPoint1">🔸 <strong>1er trimestre :</strong> Fatigue intense, nausées, adaptation hormonale</li>
-                                <li data-i18n="bodyPoint2">🔸 <strong>2e trimestre :</strong> Retour d'énergie, croissance du ventre, premiers mouvements</li>
-                                <li data-i18n="bodyPoint3">🔸 <strong>3e trimestre :</strong> Préparation à l'accouchement, gestion du poids et de la posture</li>
-                                <li data-i18n="bodyPoint4">🔸 <strong>En continu :</strong> Hydrater, se reposer, consulter votre équipe soignante régulièrement</li>
+                                <li data-i18n="bodyPoint1">🔸 1er trimestre : Fatigue intense, nausées, adaptation
+                                    hormonale</li>
+                                <li data-i18n="bodyPoint2">🔸 2e trimestre : Retour d'énergie, croissance du ventre,
+                                    premiers mouvements</li>
+                                <li data-i18n="bodyPoint3">🔸 3e trimestre : Préparation à l'accouchement, gestion du
+                                    poids et de la posture</li>
+                                <li data-i18n="bodyPoint4">🔸 En continu : Hydrater, se reposer, consulter votre équipe
+                                    soignante régulièrement</li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_accueil_3_title">🥗 Nutrition &amp; Bien-être</h2>
-                            <p data-i18n="slide_accueil_3_body">Une alimentation équilibrée est le pilier d'une grossesse saine. Privilégiez des apports riches en acide folique, fer, calcium et oméga-3, essentiels au développement optimal de votre bébé.</p>
+                            <h2 data-i18n="slide_accueil_3_title">🥗 Nutrition & Bien-être</h2>
+                            <p data-i18n="slide_accueil_3_body">Une alimentation équilibrée est le pilier d'une
+                                grossesse saine.</p>
                             <ul class="styled-list">
                                 <li data-i18n="nutri1">🥦 Légumes verts, légumineuses et fruits frais chaque jour</li>
                                 <li data-i18n="nutri2">🐟 Poissons gras (sardines, saumon) 2 fois par semaine</li>
@@ -174,21 +207,23 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_accueil_4_title">💆‍♀️ Santé mentale &amp; Soutien émotionnel</h2>
-                            <p data-i18n="slide_accueil_4_body">Votre bien-être émotionnel est tout aussi important que votre santé physique. La grossesse peut s'accompagner de doutes, d'angoisses ou de bouleversements affectifs — c'est tout à fait normal.</p>
+                            <h2 data-i18n="slide_accueil_4_title">💆‍♀️ Santé mentale & Soutien émotionnel</h2>
+                            <p data-i18n="slide_accueil_4_body">Votre bien-être émotionnel est tout aussi important que
+                                votre santé physique.</p>
                             <ul class="styled-list">
-                                <li data-i18n="mental1">💬 Parlez de vos émotions à votre entourage ou à un professionnel</li>
+                                <li data-i18n="mental1">💬 Parlez de vos émotions à votre entourage ou à un
+                                    professionnel</li>
                                 <li data-i18n="mental2">🧘 Pratiquez la méditation et la relaxation guidée</li>
-                                <li data-i18n="mental3">📖 Tenez un journal de grossesse pour exprimer vos ressentis</li>
+                                <li data-i18n="mental3">📖 Tenez un journal de grossesse pour exprimer vos ressentis
+                                </li>
                                 <li data-i18n="mental4">🤝 Rejoignez des groupes de soutien pour futures mamans</li>
-                                <li data-i18n="mental5">🌙 Accordez-vous des moments de repos et de plaisir chaque jour</li>
+                                <li data-i18n="mental5">🌙 Accordez-vous des moments de repos et de plaisir chaque jour
+                                </li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="controls">
                         <button id="prev-accueil" data-i18n="btnPrev">◀ Précédent</button>
                         <span class="slide-counter" id="counter-accueil">1 / 5</span>
@@ -197,55 +232,69 @@
                 </div>
             </div>
 
-            <!-- ═══════ TRAVAIL ═══════ -->
-            <div class="slider-section" id="travail">
+            <!-- ═══════ ACCOUCHEMENT ═══════ -->
+            <div class="slider-section" id="accouchement">
                 <div class="slider">
-
                     <div class="slide active">
+                        <div class="slide-inner welcome-slide">
+                            <div class="welcome-badge" data-i18n="birthBadge">Préparation à l'accouchement</div>
+                            <h2 class="welcome-title" data-i18n="slide_birth_0_title">👶 C'est quoi un accouchement
+                                physiologique ?</h2>
+                            <p class="welcome-body" data-i18n="slide_birth_0_body">Un accouchement physiologique est un
+                                accouchement qui se déroule naturellement, sans intervention médicale systématique (pas
+                                de déclenchement artificiel, pas de péridurale obligatoire, pas d'épisiotomie
+                                systématique…), sauf si une complication apparaît. Le corps de la femme est capable
+                                d'accoucher naturellement grâce aux contractions utérines efficaces, à la descente
+                                progressive du bébé et aux hormones naturelles (ocytocine, endorphines). C'est un
+                                processus progressif, instinctif et respecté.</p>
+                            <div style="margin-top:16px;">
+                                <video controls
+                                    style="width:100%;max-width:200px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);"
+                                    id="vd1">
+                                    <source src="accouchement physiologique .mp4" type="video/mp4">
+                                    <p data-i18n="videoNotSupported">Votre navigateur ne supporte pas la vidéo.</p>
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_travail_0_title">💪 Rester active pendant la grossesse</h2>
-                            <p data-i18n="slide_travail_0_body">L'activité physique modérée est recommandée tout au long d'une grossesse sans complications. Elle améliore la circulation sanguine, réduit les douleurs dorsales, favorise un meilleur sommeil et prépare votre corps à l'accouchement.</p>
+                            <h2 data-i18n="slide_birth_1_title">🌊 Comment décrire le processus ?</h2>
+                            <p data-i18n="slide_birth_1_body">L'accouchement physiologique se déroule en 4 phases
+                                distinctes, chacune avec ses caractéristiques propres.</p>
                             <ul class="styled-list">
-                                <li data-i18n="work1">🚶 Marche quotidienne de 30 minutes à un rythme modéré</li>
-                                <li data-i18n="work2">🏊 Aquagym ou natation douce, idéale pour décharger le poids</li>
-                                <li data-i18n="work3">🧘 Yoga prénatal et étirements adaptés</li>
-                                <li data-i18n="work4">🚴 Vélo stationnaire en début de grossesse</li>
+                                <li><strong data-i18n="birthPhase1">1) Phase de latence :</strong> <span
+                                        data-i18n="birthPhase1Desc">Contractions irrégulières, dilatation lente (0–3
+                                        cm). La femme peut encore parler, marcher.</span></li>
+                                <li><strong data-i18n="birthPhase2">2) Phase active du travail :</strong> <span
+                                        data-i18n="birthPhase2Desc">Contractions régulières, plus intenses. Dilatation
+                                        4–10 cm. Descente du bébé.</span></li>
+                                <li><strong data-i18n="birthPhase3">3) Expulsion :</strong> <span
+                                        data-i18n="birthPhase3Desc">Envie de pousser, sortie du bébé.</span></li>
+                                <li><strong data-i18n="birthPhase4">4) Délivrance :</strong> <span
+                                        data-i18n="birthPhase4Desc">Expulsion du placenta.</span></li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_travail_1_title">😴 Gérer la fatigue au quotidien</h2>
-                            <p data-i18n="slide_travail_1_body">La fatigue est l'un des symptômes les plus fréquents de la grossesse, particulièrement aux 1er et 3e trimestres. Elle résulte des transformations hormonales et de l'augmentation du volume sanguin.</p>
+                            <h2 data-i18n="slide_birth_2_title">🤝 Rôle du soutien pendant l'accouchement</h2>
+                            <p data-i18n="slide_birth_2_body">Avoir une personne de confiance à vos côtés peut
+                                transformer votre expérience d'accouchement.</p>
                             <ul class="styled-list">
-                                <li data-i18n="fatigue1">🛌 Accordez-vous des siestes courtes (20-30 min) en journée</li>
-                                <li data-i18n="fatigue2">📅 Planifiez vos activités importantes en matinée</li>
-                                <li data-i18n="fatigue3">🙋 N'hésitez pas à déléguer et à accepter de l'aide</li>
-                                <li data-i18n="fatigue4">🥗 Évitez les repas lourds qui accentuent la somnolence</li>
-                                <li data-i18n="fatigue5">🌙 Maintenez un rythme de sommeil régulier</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <h2 data-i18n="slide_travail_2_title">⚠️ Exercices à éviter</h2>
-                            <p data-i18n="slide_travail_2_body">Certains exercices sont contre-indiqués durant la grossesse. Consultez toujours votre médecin avant de commencer un programme sportif.</p>
-                            <ul class="styled-list">
-                                <li data-i18n="avoid1">🚫 Sports de contact ou à risque de chutes</li>
-                                <li data-i18n="avoid2">🚫 Exercices en décubitus dorsal après le 1er trimestre</li>
-                                <li data-i18n="avoid3">🚫 Efforts intenses en altitude ou en chaleur excessive</li>
-                                <li data-i18n="avoid4">🚫 Musculation avec charges lourdes</li>
-                                <li data-i18n="avoid5">✅ En cas de doute : marche, natation et yoga restent les meilleures options</li>
+                                <li data-i18n="support1">✓ Offrir un soutien émotionnel et physique constant</li>
+                                <li data-i18n="support2">✓ Vous rappeler vos techniques de respiration</li>
+                                <li data-i18n="support3">✓ Vous aider à trouver les positions les plus confortables</li>
+                                <li data-i18n="support4">✓ Vous hydrater et vous encourager</li>
+                                <li data-i18n="support5">✓ Communiquer avec l'équipe médicale en votre nom</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="controls">
-                        <button id="prev-travail" data-i18n="btnPrev">◀ Précédent</button>
-                        <span class="slide-counter" id="counter-travail">1 / 3</span>
-                        <button id="next-travail" data-i18n="btnNext">Suivant ▶</button>
+                        <button id="prev-accouchement" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-accouchement">1 / 4</span>
+                        <button id="next-accouchement" data-i18n="btnNext">Suivant ▶</button>
                     </div>
                 </div>
             </div>
@@ -253,171 +302,504 @@
             <!-- ═══════ RESPIRATION ═══════ -->
             <div class="slider-section" id="respiration">
                 <div class="slider">
-
                     <div class="slide active">
-                        <div class="slide-inner">
-                            <h2 data-i18n="slide_resp_0_title">🌬️ Pourquoi bien respirer ?</h2>
-                            <p data-i18n="slide_resp_0_body">La respiration consciente est un outil fondamental pendant la grossesse et l'accouchement. Elle permet d'oxygéner efficacement le sang, de réduire le stress et de gérer la douleur lors des contractions.</p>
-                            <ul class="styled-list">
-                                <li data-i18n="breath1">💓 Améliore l'oxygénation du fœtus</li>
-                                <li data-i18n="breath2">🧠 Réduit l'anxiété et régule le système nerveux</li>
-                                <li data-i18n="breath3">💪 Renforce le diaphragme et le plancher pelvien</li>
-                                <li data-i18n="breath4">😌 Favorise la détente profonde et un meilleur sommeil</li>
-                            </ul>
+                        <div class="slide-inner welcome-slide">
+                            <div class="welcome-badge" data-i18n="breathBadge">Gestion du souffle</div>
+                            <h2 class="welcome-title" data-i18n="slide_resp_0_title">🌷 Bienvenue dans ton espace
+                                respiration</h2>
+                            <p class="welcome-body" data-i18n="slide_resp_0_body">Prends un instant pour toi… La
+                                respiration est ton alliée tout au long de la grossesse et le jour de la naissance. À
+                                chaque souffle, tu offres à ton bébé calme, oxygène et sécurité. Respire… ton corps sait
+                                faire. Inspire la sérénité, expire les doutes… 🤍</p>
+                            <div class="welcome-features">
+                                <div class="feature-chip chip-bounce" data-i18n="breath1">💓 Oxygénation du fœtus</div>
+                                <div class="feature-chip chip-bounce" data-i18n="breath2">🧠 Réduit l'anxiété</div>
+                                <div class="feature-chip chip-bounce" data-i18n="breath3">💪 Renforce le diaphragme
+                                </div>
+                                <div class="feature-chip chip-bounce" data-i18n="breath4">😌 Favorise la détente</div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_resp_1_title">🫁 Respiration abdominale profonde</h2>
-                            <p data-i18n="slide_resp_1_body">La technique de base recommandée pendant la grossesse. Elle mobilise pleinement le diaphragme et optimise les échanges gazeux.</p>
+                            <h2 data-i18n="slide_resp_1_title">🫁 Techniques de respiration pendant la grossesse</h2>
+                            <p data-i18n="slide_resp_1_body">Pratiquez ces techniques facilement à la maison, à tout
+                                moment de la journée.</p>
                             <ul class="styled-list">
-                                <li data-i18n="abdo1">1️⃣ Installez-vous confortablement, une main sur le ventre</li>
-                                <li data-i18n="abdo2">2️⃣ Inspirez lentement par le nez en 4 secondes — ventre qui se soulève</li>
-                                <li data-i18n="abdo3">3️⃣ Retenez votre souffle 1 à 2 secondes</li>
-                                <li data-i18n="abdo4">4️⃣ Expirez doucement par la bouche en 6 secondes</li>
-                                <li data-i18n="abdo5">🔁 Répétez 5 à 10 fois, 2 à 3 fois par jour</li>
+                                <li data-i18n="abdo1"><strong>1. Respiration abdominale :</strong> Main sur le ventre.
+                                    Inspirez par le nez (ventre se gonfle), expirez par la bouche. Améliore
+                                    l'oxygénation, favorise la relaxation, diminue le stress.</li>
+                                <li data-i18n="abdo2"><strong>2. Respiration lente et profonde :</strong> Inspirez
+                                    calmement par le nez, expirez doucement par la bouche. Gardez un rythme calme.
+                                    Apaise le corps, améliore la circulation, favorise le sommeil.</li>
+                                <li data-i18n="abdo3"><strong>3. Cohérence cardiaque :</strong> Inspirez 5 secondes,
+                                    expirez 5 secondes. Continuez 5 minutes. Réduit le stress, favorise l'équilibre
+                                    émotionnel.</li>
+                                <li data-i18n="abdo4"><strong>4. Respiration soufflée :</strong> Inspirez profondément,
+                                    expirez comme si vous souffliez dans une paille. Aide à relâcher les tensions,
+                                    prépare le travail.</li>
+                                <li data-i18n="abdo5"><strong>5. Respiration naturelle / instinctive :</strong> Respirez
+                                    normalement, laissez votre corps guider. Favorise la détente, prépare à
+                                    l'accouchement, réduit la fatigue.</li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_resp_2_title">🌊 Respiration pour l'accouchement</h2>
-                            <p data-i18n="slide_resp_2_body">Maîtriser sa respiration est l'une des clés d'un accouchement plus serein. Ces techniques permettent de gérer les contractions et de conserver son énergie.</p>
+                            <h2 data-i18n="slide_resp_2_title">🌸 Respiration pendant la phase active du travail</h2>
+                            <p data-i18n="slide_resp_2_body">Pendant le travail, votre col se dilate et les contractions
+                                deviennent plus intenses. La respiration devient votre outil principal pour gérer la
+                                douleur.</p>
                             <ul class="styled-list">
-                                <li data-i18n="birth1">🔵 <strong data-i18n="birthPhase1">Phase de dilatation :</strong> <span data-i18n="birthPhase1Text">Respirations lentes et profondes entre les contractions</span></li>
-                                <li data-i18n="birth2">🟡 <strong data-i18n="birthPhase2">Pendant la contraction :</strong> <span data-i18n="birthPhase2Text">Expiration longue et contrôlée — ne bloquez pas votre souffle</span></li>
-                                <li data-i18n="birth3">🟢 <strong data-i18n="birthPhase3">Phase d'expulsion :</strong> <span data-i18n="birthPhase3Text">Poussées guidées par votre sage-femme, coordonnées à votre souffle</span></li>
+                                <li data-i18n="birth1"><strong>🔵 Phase latente (0–4 cm) :</strong> Respiration lente et
+                                    profonde. Inspirez par le nez, expirez par la bouche. Rythme régulier et détendu.
+                                    Apaise le corps, réduit la tension musculaire.</li>
+                                <li data-i18n="birth2"><strong>🟡 Respiration Lamaze (4–10 cm) :</strong> Inspirez
+                                    doucement par le nez, expirez par la bouche en souffle long et contrôlé. Visualisez
+                                    votre corps détendu. Diminue la perception de la douleur.</li>
+                                <li data-i18n="birth3"><strong>🟢 Panting léger :</strong> Inspirez naturellement,
+                                    expirez rapidement et doucement. Utilisé si la contraction est très intense ou si la
+                                    sage-femme demande de ne pas pousser. Retarde la poussée prématurée.</li>
                             </ul>
                         </div>
                     </div>
-
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_resp_3_title">🌊 Respiration pendant l'expulsion</h2>
+                            <p data-i18n="slide_resp_3_body">Pendant cette phase, la respiration transforme votre effort
+                                en geste contrôlé et sécurisé pour vous et votre bébé.</p>
+                            <ul class="styled-list">
+                                <li data-i18n="expul1"><strong>1. Poussée spontanée (recommandée OMS) :</strong>
+                                    Respirez normalement. Poussez seulement quand vous en ressentez l'envie. Ne retenez
+                                    pas votre souffle trop longtemps. Réduit la fatigue, diminue le risque de déchirures
+                                    du périnée.</li>
+                                <li data-i18n="expul2"><strong>2. Poussée expiratoire (respiration dirigée) :</strong>
+                                    Inspirez profondément par le nez (ventre puis poitrine), expirez lentement par la
+                                    bouche avec un son « F » ou « S ». Aide le bébé à descendre, protège le périnée.
+                                </li>
+                                <li data-i18n="expul3"><strong>3. Respiration courte rapide (panting) :</strong> Expirez
+                                    rapidement en « pouffant » doucement. Quand le col n'est pas complètement dilaté ou
+                                    sur demande de la sage-femme. Protège le col et le périnée.</li>
+                                <li data-i18n="expul4">💡 <em>Conseil : Ne forcez jamais. Créez un rituel quotidien de
+                                        respiration. Adaptez selon votre ressenti et votre trimestre.</em></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="controls">
                         <button id="prev-respiration" data-i18n="btnPrev">◀ Précédent</button>
-                        <span class="slide-counter" id="counter-respiration">1 / 3</span>
+                        <span class="slide-counter" id="counter-respiration">1 / 4</span>
                         <button id="next-respiration" data-i18n="btnNext">Suivant ▶</button>
                     </div>
                 </div>
             </div>
 
             <!-- ═══════ POSTURES ═══════ -->
-            <div class="slider-section" id="mouvement">
+            <div class="slider-section" id="postures">
                 <div class="slider">
-
                     <div class="slide active">
                         <div class="slide-inner welcome-slide">
                             <div class="welcome-badge" data-i18n="posturesBadge">Kinésithérapie prénatale</div>
                             <h2 class="welcome-title" data-i18n="slide_pos_0_title">🤱 Chère future maman</h2>
-                            <p class="welcome-body" data-i18n="slide_pos_0_body">Ton corps vit une transformation extraordinaire. Avec la croissance de ton ventre, ta posture change et certaines tensions apparaissent au niveau du dos, du bassin ou des jambes.</p>
-                            <p class="welcome-body" style="margin-top:10px;" data-i18n="slide_pos_0_body2">Les postures présentées ci-après ont été sélectionnées par notre équipe de kinésithérapeutes prénatales pour t'aider à soulager les douleurs, favoriser la mobilité du bassin et préparer ton corps à l'accouchement.</p>
+                            <p class="welcome-body" data-i18n="slide_pos_0_body">Ton corps vit une transformation
+                                extraordinaire. Avec la croissance de ton ventre, ta posture change et certaines
+                                tensions peuvent apparaître au niveau du dos, du bassin ou des jambes.</p>
+                            <p class="welcome-body" style="margin-top:10px;" data-i18n="slide_pos_0_body2">Ces
+                                inconforts sont fréquents pendant la grossesse. Grâce à des postures douces et adaptées,
+                                tu peux soulager ces douleurs, te détendre et préparer ton corps à l’accouchement.
+                                <br> Voici quelques postures simples et efficaces à pratiquer pendant la grossesse.
+                            </p>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
                             <h2 data-i18n="slide_pos_1_title">🌿 Décubitus Latéral Gauche (DLG)</h2>
-                            <p data-i18n="slide_pos_1_desc">Position allongée sur le côté gauche, coussins de soutien sous le ventre et entre les genoux.</p>
+                            <p data-i18n="slide_pos_1_desc">Position allongée sur le côté gauche, avec des coussins pour
+                                soutenir le corps.</p>
                             <div class="img-box">
                                 <img src="Décubitus Latéral Gauche.jpeg" alt="Décubitus latéral gauche">
                                 <div class="benefits-block">
                                     <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
                                     <ul>
-                                        <li data-i18n="dlg1">✔️ Optimise la circulation utéro-placentaire</li>
+                                        <li data-i18n="dlg1">✔️ Améliore la circulation utéro-placentaire</li>
                                         <li data-i18n="dlg2">✔️ Favorise l'oxygénation du fœtus</li>
-                                        <li data-i18n="dlg3">✔️ Réduit les œdèmes des membres inférieurs</li>
-                                        <li data-i18n="dlg4">✔️ Soulage les lombalgies chroniques</li>
-                                        <li data-i18n="dlg5">✔️ Induit une relaxation profonde</li>
+                                        <li data-i18n="dlg3">✔️ Diminue les œdèmes des membres inférieurs</li>
+                                        <li data-i18n="dlg4">✔️ Soulage les lombalgies</li>
+                                        <li data-i18n="dlg5">✔️ Favorise la relaxation</li>
                                     </ul>
+                                    <details>
+                                        <summary>🔹 Comment s’installer ?</summary>
+
+                                        <p class="posture-tip" data-i18n="dlg_tip">-S'allonger sur le côté gauche <br>-
+                                            coussin sous la tête, entre les genoux, et sous le ventre si nécessaire.</p>
+                                    </details>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_pos_2_title">🌿 Position accroupie</h2>
-                            <p data-i18n="slide_pos_2_desc">Flexion des genoux avec descente progressive du bassin, dos droit, pieds à plat.</p>
+                            <h2 data-i18n="slide_pos_2_title">🌸 Position accroupie</h2>
+                            <p data-i18n="slide_pos_2_desc">Fléchir les genoux en descendant le bassin vers le sol, tout
+                                en gardant le dos droit.</p>
                             <div class="img-box">
                                 <img src="Position accroupie.jpeg" alt="Position accroupie">
                                 <div class="benefits-block">
                                     <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
                                     <ul>
-                                        <li data-i18n="squat1">✔️ Renforce les muscles des membres inférieurs</li>
-                                        <li data-i18n="squat2">✔️ Assouplit le périnée et le plancher pelvien</li>
-                                        <li data-i18n="squat3">✔️ Augmente la mobilité et l'ouverture du bassin</li>
-                                        <li data-i18n="squat4">✔️ Améliore la circulation sanguine</li>
-                                        <li data-i18n="squat5">✔️ Prépare activement à l'expulsion</li>
+                                        <li data-i18n="squat1">✔️ Renforce les muscles des jambes</li>
+                                        <li data-i18n="squat2">✔️ Assouplit le périnée</li>
+                                        <li data-i18n="squat3">✔️ Augmente la mobilité du bassin</li>
+                                        <li data-i18n="squat4">✔️ Améliore la circulation</li>
+                                        <li data-i18n="squat5">✔️ Prépare le bassin à l'accouchement</li>
                                     </ul>
+                                    <details>
+                                        <summary>🔹 Comment s’installer ?</summary>
+                                        <p class="posture-tip" data-i18n="squat_tip">- Écartez les pieds <br>- descendez
+                                            doucement en pliant les genoux <br>- aidez-vous d'un support (chaise, mur ou
+                                            partenaire) <br>- remontez lentement.</p>
+                                    </details>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
                             <h2 data-i18n="slide_pos_3_title">🌿 Position à quatre pattes</h2>
-                            <p data-i18n="slide_pos_3_desc">Appui symétrique sur les mains et les genoux, rachis neutre, regard vers le sol.</p>
+                            <p data-i18n="slide_pos_3_desc">Appui sur les mains et les genoux, le dos droit et le regard
+                                vers le sol.</p>
                             <div class="img-box">
                                 <img src="Position à quatre pattes.jpeg" alt="Position à quatre pattes">
                                 <div class="benefits-block">
                                     <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
                                     <ul>
-                                        <li data-i18n="qp1">✔️ Soulage efficacement les lombalgies</li>
-                                        <li data-i18n="qp2">✔️ Décharge la pression sur le bassin</li>
+                                        <li data-i18n="qp1">✔️ Soulage les lombalgies</li>
+                                        <li data-i18n="qp2">✔️ Diminue la pression sur le bassin</li>
                                         <li data-i18n="qp3">✔️ Améliore la mobilité pelvienne</li>
-                                        <li data-i18n="qp4">✔️ Encourage la bonne présentation du bébé</li>
-                                        <li data-i18n="qp5">✔️ Diminue les douleurs sciatiques</li>
+                                        <li data-i18n="qp4">✔️ Favorise la bonne position du bébé</li>
+                                        <li data-i18n="qp5">✔️ Réduit les douleurs sciatiques</li>
                                     </ul>
+                                    <details>
+                                        <summary>🔹 Comment s’installer ?</summary>
+                                        <p class="posture-tip" data-i18n="qp_tip">- À genoux sur un tapis <br>- mains
+                                            sous les épaules <br>- genoux sous les hanches <br>- gardez le dos neutre
+                                            <br>- respirez calmement.</p>
+                                    </details>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="slide">
                         <div class="slide-inner">
-                            <h2 data-i18n="slide_pos_4_title">🌿 Posture de suspension</h2>
-                            <p data-i18n="slide_pos_4_desc">Debout, légère inclinaison vers l'avant avec appui sur un support stable (mur, barre, rebozo).</p>
+                            <h2 data-i18n="slide_pos_4_title">🌸 Posture de suspension</h2>
+                            <p data-i18n="slide_pos_4_desc">Debout en se penchant légèrement vers l'avant, en se tenant
+                                à un support (mur, chaise, partenaire ou écharpe type rebozo).</p>
                             <div class="img-box">
                                 <img src="Posture de suspension.jpeg" alt="Posture de suspension">
                                 <div class="benefits-block">
                                     <strong class="benefits-title" data-i18n="benefitsTitle">🔹 Bienfaits</strong>
                                     <ul>
-                                        <li data-i18n="sus1">✔️ Diminue la compression lombaire</li>
-                                        <li data-i18n="sus2">✔️ Décharge le poids du bassin</li>
-                                        <li data-i18n="sus3">✔️ Détend et assouplit le périnée</li>
-                                        <li data-i18n="sus4">✔️ Favorise la descente du bébé</li>
-                                        <li data-i18n="sus5">✔️ Procure une sensation de légèreté</li>
+                                        <li data-i18n="sus1">✔️ Soulage les lombalgies</li>
+                                        <li data-i18n="sus2">✔️ Diminue la pression sur le bassin</li>
+                                        <li data-i18n="sus3">✔️ Détend le périnée</li>
+                                        <li data-i18n="sus4">✔️ Favorise la mobilité pelvienne</li>
+                                        <li data-i18n="sus5">✔️ Apporte une sensation de légèreté</li>
                                     </ul>
+                                    <details>
+                                        <summary>🔹 Comment s’installer ?</summary>
+                                        <p class="posture-tip" data-i18n="sus_tip">- Pieds écartés à largeur du bassin
+                                            <br>- penchez-vous doucement <br>- accrochez-vous à un support solide <br>-
+                                            relâchez les épaules et respirez profondément.</p>
+                                    </details>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="controls">
-                        <button id="prev-mouvement" data-i18n="btnPrev">◀ Précédent</button>
-                        <span class="slide-counter" id="counter-mouvement">1 / 5</span>
-                        <button id="next-mouvement" data-i18n="btnNext">Suivant ▶</button>
+                        <button id="prev-postures" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-postures">1 / 5</span>
+                        <button id="next-postures" data-i18n="btnNext">Suivant ▶</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════ ALTERNATIVES ═══════ -->
+            <div class="slider-section" id="alternatives">
+                <div class="slider">
+                    <div class="slide active">
+                        <div class="slide-inner welcome-slide">
+                            <div class="welcome-badge" data-i18n="alternativesBadge">Approches complémentaires</div>
+                            <h2 class="welcome-title" data-i18n="slide_alt_0_title">✨ Préparation du Périnée</h2>
+                            <p class="welcome-body" data-i18n="slide_alt_0_body">L'objectif de cette préparation n'est
+                                pas de remplacer un suivi médical, mais de vous aider à mieux comprendre votre corps
+                                pour accompagner la naissance de manière éclairée. Le périnée est un ensemble de muscles
+                                situés entre la symphyse pubienne et le coccyx. Il soutient la vessie, l'utérus et le
+                                rectum. Un périnée souple et conscient réduit le risque de déchirure et améliore
+                                l'expulsion.</p>
+                            <div style="margin-top:16px;">
+                                <video controls
+                                    style="width:80%;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);margin-left:100px;"
+                                    id="vd2">
+                                    <source src="alternatives.mp4" type="video/mp4">
+                                    <p data-i18n="videoNotSupported">Votre navigateur ne supporte pas la vidéo.</p>
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2>🌿 PRÉPARATION DU PÉRINÉE</h2>
+                            <p data-i18n="slide_alt_1_desc">Le périnée est un ensemble de muscles et de tissus fibreux
+                                situés entre la symphyse pubienne et le coccyx.
+                                Il soutient les organes pelviens : vessie, utérus et rectum.
+                            </p>
+                            <ul class="styled-list">
+                                <li data-i18n="acu1"><strong>1)C’est quoi le périnée ?</strong> Le périnée est un
+                                    ensemble de muscles et de tissus fibreux situés entre la symphyse pubienne et le
+                                    coccyx.
+                                    Il soutient les organes pelviens : vessie, utérus et rectum. <br>
+                                    Pendant l’accouchement, il doit : <br>
+                                    • Se relâcher <br>
+                                    • S’étirer progressivement <br>
+                                    • Permettre le passage de la tête fœtale <br>
+                                    =>Un périnée souple et conscient réduit le risque de déchirure et améliore
+                                    l’expulsion
+                                </li>
+                                <li data-i18n="acu2"><strong>2)Objectifs de la préparation périnéale :</strong>
+                                    Apprendre à identifier et ressentir son périnée. Apprendre le relâchement volontaire
+                                    — savoir détendre le plancher pelvien au moment de la poussée. Coordination
+                                    respiratoire avec les contractions.</li>
+                                <li data-i18n="acu3"><strong>3) Préservation de la santé à long terme :</strong>1.
+                                    Prévention des traumatismes physiques
+                                    L'objectif central est d'assouplir les tissus pour qu'ils s'étirent plus facilement
+                                    lors du passage du bébé.
+                                    • Réduction des déchirures : Un périnée préparé (par massage ou exercices) réduit le
+                                    risque de déchirures périnéales graves lors de l'expulsion. <br>
+                                    • Limitation des épisiotomies : En améliorant l'élasticité, la préparation peut
+                                    diminuer le recours à l'épisiotomie. <br>
+                                    • Cicatrisation facilitée : En cas de lésion, un muscle bien vascularisé et
+                                    entretenu cicatrise souvent mieux et plus rapidement. <br>
+                                    2. Maîtrise fonctionnelle et sensorielle <br>
+                                    Il s'agit d'apprendre à contrôler cette zone souvent méconnue. <br>
+                                    • Prise de conscience : Apprendre à identifier et à ressentir son périnée pour mieux
+                                    le préserver. <br>
+                                    • Apprentissage du relâchement : Savoir détendre volontairement le plancher pelvien
+                                    au moment de la poussée pour opposer moins de résistance. <br>
+                                    • Coordination respiratoire : Lier les contractions et les relâchements à la
+                                    respiration pour optimiser les efforts de poussée. <br>
+                                    3. Préservation de la santé à long terme <br>
+                                    La préparation anticipe les désagréments fréquents du post-partum. <br>
+                                    • Prévention de l'incontinence : Tonifier le muscle aide à prévenir les fuites
+                                    urinaires pendant et après la grossesse. <br>
+                                    • Soutien des organes : Renforcer le "hamac" musculaire pour éviter les prolapsus
+                                    (descentes d'organes) à l'avenir. <br>
+                                    • Récupération post-natale : Commencer les exercices dès la grossesse peut réduire
+                                    le nombre de séances de rééducation nécessaires après la naissance. <br>
+
+                                </li>
+                                <li><br><br><br><br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2>🌸Méthodes validées :</h2>
+                            <p data-i18n="slide_alt_2_desc">I)Éducation au relâchement périnéal :
+                                Beaucoup de femmes savent contracter (exercices de Kegel) mais l’accouchement nécessite
+                                surtout un relâchement contrôlé.
+                                L'éducation au relâchement périnéal est une étape clé pour faciliter l'accouchement et
+                                prévenir les douleurs chroniques ou les dysfonctions sexuelles. Contrairement au
+                                renforcement, elle apprend à "lâcher prise" musculairement.
+                            </p>
+                            <ul class="styled-list">
+                                <li data-i18n="aroma1"><strong>1. Pourquoi apprendre à relâcher ?</strong> • Pendant
+                                    l'accouchement : Un périnée capable de se détendre oppose moins de résistance à la
+                                    tête du bébé, réduisant ainsi les risques de déchirures et de recours à
+                                    l'épisiotomie. <br>
+                                    • En cas d'hypertonie : Certaines femmes ont un périnée "trop tendu" (contracté en
+                                    permanence sans le savoir), ce qui peut causer des douleurs lors des rapports ou des
+                                    difficultés à vider la vessie. </li>
+                                <li data-i18n="aroma2"><strong>2. Techniques de relâchement</strong>• La Respiration
+                                    Diaphragmatique : (C’est l’outil n°1). À l’inspiration, le diaphragme descend,
+                                    poussant doucement les organes et le périnée vers le bas, ce qui l'étire et le
+                                    relâche naturellement. <br>
+                                    • La Conscience Corporelle : Apprendre à différencier la contraction du relâchement
+                                    total. On peut s'aider de l'image du bassin qui "s'élargit" à l'expiration. <br>
+                                    • Postures de détente : <br>
+                                    • Le Yogi Squat (Malasana) : Accroupie, les talons au sol, pour ouvrir le bassin.
+                                    <br>
+                                    • La posture de l'enfant : À genoux, buste vers l'avant, pour étirer la zone
+                                    postérieure du périnée. <br>
+                                    • Le papillon allongé : Sur le dos, plantes de pieds jointes, genoux tombant sur les
+                                    côtés. <br>
+                                </li>
+                                <li data-i18n="aroma2"><strong>3. Le rôle des professionnels</strong>Une sage-femme ou
+                                    un kinésithérapeute spécialisé peut utiliser le biofeedback (visuel sur écran) pour
+                                    vous montrer quand votre muscle est réellement au repos, ou pratiquer des techniques
+                                    manuelles pour libérer les tensions tissulaires. </li>
+                                <li data-i18n="aroma2"><strong>Conseil :</strong>Pratiquez la respiration abdominale 2 à
+                                    5 minutes par jour, idéalement dans un endroit calme, pour intégrer ce réflexe de
+                                    détente.</li>
+                                <li><br><br><br><br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2>Massage périnéal (à partir de 34 SA) </h2>
+                            <p data-i18n="slide_alt_3_desc">Pourquoi masser à partir de 34 SA ? <br>
+                                • Assouplissement ciblé : Les tissus deviennent plus élastiques, facilitant le passage
+                                de la tête du bébé. <br>
+                                • Réduction des traumatismes : Une pratique régulière (3 à 4 fois par semaine) réduit
+                                statistiquement le risque de déchirures graves et le recours à l'épisiotomie. <br>
+                                • Désensibilisation : Le massage aide à s'habituer à la sensation de forte pression et
+                                d'étirement, ce qui permet de mieux gérer la phase d'expulsion. <br>
+                            </p>
+                            <ul class="styled-list">
+                                <li data-i18n="music1"><strong>Guide de pratique :</strong> <br>
+                                    • Préparation : Lavez-vous soigneusement les mains et installez-vous confortablement
+                                    (allongée avec des coussins ou un pied sur un tabouret). <br>
+                                    • Produit adapté : Utilisez une huile végétale neutre (amande douce, olive bio) ou
+                                    une huile spécifique comme l'huile de massage du périnée Weleda. <br>
+                                    • Technique interne : <br>
+                                    o Insérez le pouce (ou l'index) sur 2-3 cm à l'entrée du vagin. <br>
+                                    o Exercez une pression ferme vers le bas (vers l'anus) et effectuez des mouvements
+                                    de balancier en forme de "U" (de 3h à 9h) pendant 5 à 10 minutes. <br>
+                                    • Technique externe : Massez doucement la zone entre le vagin et l'anus (le noyau
+                                    fibreux) avec des petits cercles pour assouplir la peau. <br>
+                                    Conseil : Si le geste vous semble difficile, n'hésitez pas à demander une
+                                    démonstration lors d'une séance avec votre sage-femme. <br>
+                                </li>
+                                <li data-i18n="music2"><strong>Contre-indications :</strong> <br> o Infection
+                                    vaginale(mycoses, herpès) <br>
+                                    o Menace d’accouchement prématuré <br>
+                                    o Placenta prævia <br>
+                                </li>
+                                <li data-i18n="music2"><strong>Effet démontré :</strong> -Diminution des épisiotomies
+                                    chez les primipares.</li>
+                                <li><br><br><br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2 data-i18n="slide_alt_4_title">Facteurs influençant l’intégrité périnéale</h2>
+                            <ul class="styled-list">
+                                <li data-i18n="hyp1"><strong>1. Facteurs Maternels :</strong><br> • Qualité des tissus :
+                                    L'âge, le type de peau et la génétique influencent l'élasticité naturelle des fibres
+                                    de collagène. <br>
+                                    • Parité : Les risques de lésions sont statistiquement plus élevés lors d'un premier
+                                    accouchement (primiparité) Ameli.fr. <br>
+                                    • Hygiène de vie : Le tabagisme dégrade l'élasticité cutanée, tandis qu'une bonne
+                                    hydratation et une alimentation riche en vitamine C favorisent la souplesse
+                                    tissulaire. <br>
+                                </li>
+                                <li data-i18n="hyp2"><strong>2. Facteurs Fœtaux :</strong><br> • Poids et périmètre
+                                    crânien : Un bébé de plus de 4 kg (macrosomie) ou une tête plus large que la moyenne
+                                    augmentent la tension sur les tissus. <br>
+                                    • Position du bébé : Une présentation par le siège ou une position "face vers le
+                                    haut" (variété postérieure) demande un espace de passage plus important. <br>
+                                </li>
+                                <li data-i18n="hyp3"><strong>3. Facteurs Obstétricaux (Déroulement du travail)
+                                        :</strong><br> • Type de poussée : La poussée en expiration freinée (le
+                                    "souffle") est beaucoup plus protectrice que la poussée en apnée (méthode Valsalva).
+                                    <br>
+                                    • Vitesse d'expulsion : Une sortie trop rapide ne laisse pas le temps aux tissus de
+                                    se distendre progressivement. À l'inverse, une phase d'expulsion très longue peut
+                                    fatiguer le muscle. <br>
+                                    • Interventions médicales : L'utilisation d'instruments (ventouse, forceps) ou le
+                                    recours à l'épisiotomie impactent directement l'intégrité périnéale. <br>
+                                    • Position d'accouchement : Les positions physiologiques (sur le côté, à quatre
+                                    pattes) ouvrent mieux le bassin que la position classique sur le dos. <br>
+                                </li>
+                                <li data-i18n="hyp3"><strong>Conseil : </strong> Discuter de votre projet de naissance
+                                    avec votre sage-femme ou gynécologue permet d'aborder ces facteurs, notamment le
+                                    choix des positions de poussée.</li>
+                                <li><br><br><br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <h2>ALTERNATIVES DE PRÉPARATION</h2>
+                            <ul class="styled-list">
+                                <li data-i18n="massage1"><strong>*Yoga prénatal :</strong><br> • Objectif : Libérer les
+                                    tensions du bassin et du sacrum pour que le périnée ne soit pas "coincé" entre des
+                                    os rigides. <br>
+                                    • Bénéfice périnéal : Les postures (comme le chat-vache ou le squat) apprennent à
+                                    étirer les muscles profonds. <br>
+                                    Important : <br>
+                                    Doit être adapté à la grossesse.
+                                </li>
+                                <li data-i18n="massage2"><strong> *Chant prénatal :</strong><br> • Objectif : Utiliser
+                                    les sons graves pour faire vibrer le bas du corps. <br>
+                                    • Bénéfice périnéal : Lors des sons bas, le diaphragme descend et provoque un
+                                    micro-massage du plancher pelvien, favorisant son relâchement profond. <br>
+                                    • Action : Apprendre à "chanter" la douleur plutôt que de se crisper. Trouvez des
+                                    ateliers via l'association Chant Prénatal Musique et Santé <br>
+                                    Base neurophysiologique : <br>
+                                    • Les sons graves stimulent la détente laryngée <br>
+                                    • Il existe une corrélation neuromusculaire entre mâchoire, diaphragme et périnée
+                                    <br>
+                                    • Vocaliser pendant les contractions favorise le relâchement
+                                </li>
+                                <li data-i18n="massage3"><strong> *Sophrologie :</strong><br> La peur de la douleur
+                                    provoque souvent une contraction réflexe du périnée (le "verrouillage").
+                                    • Objectif : Par la visualisation, on imagine le périnée comme une fleur qui s'ouvre
+                                    ou un muscle souple comme une éponge. <br>
+                                    o Réduction du cortisol <br>
+                                    o Meilleure gestion de la douleur <br>
+                                    o Diminution de l’anxiété prénatale <br>
+                                    • Bénéfice périnéal : Apprendre à maintenir la zone détendue même sous la pression
+                                    de la tête du bébé.
+                                </li>
+
+                                <li data-i18n="massage5"><strong></strong></li>
+                                <li><br><br><br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-inner">
+                            <img src="Picture1.png" alt="" style="width: 100%;"> <br>
+                            <strong>
+                                	Le Yoga prépare la structure (os/muscles). <br>
+	Le Chant prépare l'ouverture (vibration/souffle). <br>
+	La Sophrologie 
+
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button id="prev-alternatives" data-i18n="btnPrev">◀ Précédent</button>
+                        <span class="slide-counter" id="counter-alternatives">1 / 6</span>
+                        <button id="next-alternatives" data-i18n="btnNext">Suivant ▶</button>
                     </div>
                 </div>
             </div>
 
         </div>
-
         <div class="right">
             <div class="card">
                 <video src="Octobre rose animations.mp4" autoplay loop muted playsinline></video>
                 <h3 data-i18n="cardTitle">💗 Octobre Rose</h3>
-                <p data-i18n="cardContent">Sensibilisation au dépistage du cancer du sein — parce que chaque femme mérite d'être protégée.</p>
+                <p data-i18n="cardContent">Sensibilisation au dépistage du cancer du sein — parce que chaque femme
+                    mérite d'être protégée.</p>
             </div>
-        </div>
-
+        </div><!-- end slider-container -->
     </main>
 
     <footer>
-        <span data-i18n="footer">💗 Tous droits réservés — Raed Azouzi | insta: @raed__az</span>
+        <span>
+            <span data-i18n="footer">💗 Tous droits réservés — Guide de la Femme Enceinte</span>
+            &nbsp;|&nbsp;
+            <span data-i18n="footerDeveloped">Développement & Design par</span>
+            &nbsp;<strong>Raed Azouzi</strong>
+            &nbsp;|&nbsp;📱 +216 29 446 035&nbsp;|&nbsp;📷 @raed__az
+        </span>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1074,34 +1074,11 @@ async function analyzeForm() {
         // Build stat cards immediately (no API needed)
         buildStats(data, currentLang);
 
-        // Call Claude API
-        const prompt = buildPrompt(data, currentLang);
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                model: "claude-sonnet-4-20250514",
-                max_tokens: 1500,
-                messages: [{ role: "user", content: prompt }]
-            })
-        });
-
-        const apiData = await response.json();
-        const rawText = apiData.content.map(c => c.text || '').join('');
-
-        // Parse JSON — strip any accidental markdown fences
-        let parsed;
-        try {
-            const cleaned = rawText.replace(/```json|```/g, '').trim();
-            parsed = JSON.parse(cleaned);
-        } catch(e) {
-            // Fallback: extract JSON from text
-            const match = rawText.match(/\{[\s\S]*\}/);
-            parsed = match ? JSON.parse(match[0]) : {};
-        }
-
+        // 100% OFFLINE ANALYSIS — Generate personalized advice locally
+        const offlineAnalysis = generateOfflineAnalysis(data, currentLang);
+        
         // Render results
-        renderAIResults(parsed, currentLang);
+        renderAIResults(offlineAnalysis, currentLang);
 
         // Show results section
         overlay.classList.remove('show');
@@ -1113,13 +1090,88 @@ async function analyzeForm() {
         console.error('Analysis error:', err);
         overlay.classList.remove('show');
         // Fallback: show stats only
-        document.getElementById('analysisSection').innerHTML = `<div class="analysis-block warning"><h3>ℹ️ Analyse partielle</h3><p>L'analyse IA n'est pas disponible pour le moment. Vos indicateurs de santé calculés sont affichés ci-dessus.</p></div>`;
+        document.getElementById('analysisSection').innerHTML = `<div class="analysis-block warning"><h3>ℹ️ Analyse partielle</h3><p>L'analyse n'est pas disponible pour le moment. Vos indicateurs de santé calculés sont affichés ci-dessus.</p></div>`;
         document.getElementById('formCard').style.display = 'none';
         document.getElementById('resultsSection').style.display = 'block';
         document.getElementById('resultsSection').scrollIntoView({ behavior:'smooth' });
     } finally {
         document.getElementById('submitBtn').disabled = false;
     }
+}
+
+/* ============================================================
+   OFFLINE ANALYSIS GENERATOR
+   ============================================================ */
+function generateOfflineAnalysis(data, lang) {
+    const t = translations[lang] || translations.fr;
+    const advice = { observations: [], recommendations: [], warnings: [] };
+    
+    // BMI Analysis
+    const bmi = parseInt(data.bmi) || 0;
+    if (bmi < 18.5) {
+        advice.observations.push("⚠️ IMC faible : Consultez votre médecin pour ajuster votre prise de poids.");
+        advice.recommendations.push("💪 Augmentez votre apport calorique avec des aliments nutritifs et sains.");
+    } else if (bmi > 30) {
+        advice.observations.push("⚠️ IMC élevé : Une prise de poids modérée est recommandée.");
+        advice.recommendations.push("🥗 Favoriquez les aliments entiers et limitez les sucres.");
+    } else {
+        advice.observations.push("✓ Votre IMC est dans une plage normale pour la grossesse.");
+    }
+    
+    // Gestational Age Analysis
+    const ga = parseInt(data.ga) || 0;
+    if (ga < 12) {
+        advice.recommendations.push("🤰 Premier trimestre : Repos, acide folique et hydratation sont essentiels.");
+    } else if (ga < 28) {
+        advice.recommendations.push("💪 Deuxième trimestre : C'est le moment idéal pour les exercices prénatals doux.");
+    } else {
+        advice.recommendations.push("🛏️ Troisième trimestre : Préparez-vous avec les postures et techniques de respiration.");
+    }
+    
+    // Symptoms Analysis
+    if (data.symptoms && data.symptoms.includes('nausea')) {
+        advice.recommendations.push("🌿 Pour les nausées : petit-déjeuner léger, gingembre, et repos fréquent.");
+    }
+    if (data.symptoms && data.symptoms.includes('fatigue')) {
+        advice.recommendations.push("😴 Pour la fatigue : siestes courtes (20-30 min), hydratation régulière.");
+    }
+    if (data.symptoms && data.symptoms.includes('back_pain')) {
+        advice.recommendations.push("💆 Pour les douleurs : essayez les postures prénatales et massages doux.");
+    }
+    
+    // Hemoglobin Analysis
+    const hb = parseFloat(data.hemoglobin) || 0;
+    if (hb < 10) {
+        advice.warnings.push("⚠️ IMPORTANT : Anémie sévère — consultez votre médecin immédiatement.");
+    } else if (hb < 11) {
+        advice.observations.push("💊 Légère anémie détectée : augmentez les aliments riches en fer.");
+    }
+    
+    // Blood Pressure Analysis
+    const sys = parseInt(data.bp_sys) || 0;
+    const dia = parseInt(data.bp_dia) || 0;
+    if (sys > 140 || dia > 90) {
+        advice.warnings.push("⚠️ Tension élevée — Contactez votre professionnel de santé.");
+    }
+    
+    // Lifestyle
+    if (data.activity === 'none') {
+        advice.recommendations.push("🚶 Marche quotidienne de 30 minutes peut améliorer votre bien-être.");
+    }
+    
+    if (data.sleep === 'poor') {
+        advice.recommendations.push("🌙 Sommeil : créez une routine, évitez les écrans 1h avant le coucher.");
+    }
+    
+    // Always add positive messages
+    advice.recommendations.push("💗 Vous êtes courageuse ! Consultez régulièrement votre équipe soignante.");
+    advice.observations.push("✓ Chaque jour, vous vous préparez merveilleusement pour accueillir votre bébé.");
+    
+    return {
+        observations: advice.observations,
+        recommendations: advice.recommendations,
+        warnings: advice.warnings
+    };
 }
 
 /* ============================================================
